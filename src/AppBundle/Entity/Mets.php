@@ -9,6 +9,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 /**
  * Mets
  *
+ * @ORM\HasLifecycleCallbacks
  * @ORM\Table(name="mets", uniqueConstraints={@ORM\UniqueConstraint(name="metscol_UNIQUE", columns={"metscol"})})
  * @ORM\Entity
  * @Vich\Uploadable
@@ -27,7 +28,7 @@ class Mets
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=105, nullable=true)
+     * @ORM\Column(name="description", type="text",  nullable=true)
      */
     private $description;
 
@@ -46,10 +47,10 @@ class Mets
 
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", options={"default": "CURRENT_TIMESTAMP"})
      * @var \DateTime
      */
-    private $updatedAt;
+    private $updatedAt ;
 
     /**
      * @var string
@@ -79,6 +80,15 @@ class Mets
      */
     private $prix;
 
+
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function onPrePersistSetRegistrationDate()
+    {
+        //$this->updatedAt = new \DateTime();
+    }
 
 
     public function setImageFile(File $image = null)

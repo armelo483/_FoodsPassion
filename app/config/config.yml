@@ -17,9 +17,32 @@ vich_uploader:
 
 easy_admin:
     entities:
-    # change the following to the namespaces of your own entities
-    - AppBundle\Entity\Mets
-    - AppBundle\Entity\User
+        Mets:
+            list:
+                fields:
+                - { property: 'imageUrl', type: 'image', base_path: '%app.path.product_images%' }
+                - { property: 'libelle', type: 'string'}
+                - { property: 'description', type: 'text'}
+                - { property: 'prix', type: 'decimal'}
+
+            form:
+                fields:
+                - { property: 'libelle', type: 'text'}
+                - { property: 'description', type: 'textarea'}
+                - { property: 'prix', type: 'number'}
+                - { property: 'imageFile', type: 'vich_image', base_path: '%app.path.product_images%'}
+            show:
+                fields:
+                - { property: 'imageUrl', type: 'image', base_path: '%app.path.product_images%' }
+
+            class: AppBundle\Entity\Mets
+
+        User:
+            list:
+                fields:
+                - { property: 'image', type: 'image', base_path: '%app.path.product_images%' }
+            class: AppBundle\Entity\User
+
 
 framework:
     #esi: ~
