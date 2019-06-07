@@ -41,7 +41,7 @@ class Mets
 
     /**
      * @Vich\UploadableField(mapping="product_images", fileNameProperty="imageUrl")
-     * @var File
+     * @var File $imageFile
      */
     private $imageFile;
 

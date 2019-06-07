@@ -14,13 +14,16 @@ vich_uploader:
         product_images:
             uri_prefix:         '%app.path.product_images%'
             upload_destination: '%kernel.project_dir%/public%app.path.product_images%'
+            namer: vich_uploader.namer_uniqid
 
 easy_admin:
     entities:
         Mets:
+            label: 'Interface met'
             list:
+                title: "Liste des mets dans la base"
                 fields:
-                - { property: 'imageUrl', type: 'image', base_path: '%app.path.product_images%' }
+                #- { property: 'imageUrl',  type: 'image', base_path: '%kernel.root_dir%/public%app.path.product_images%'}
                 - { property: 'libelle', type: 'string'}
                 - { property: 'description', type: 'text'}
                 - { property: 'prix', type: 'decimal'}
