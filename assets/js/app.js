@@ -4,7 +4,7 @@ var $ = require('jquery');
 
 require('bootstrap');
 require('animate.css');
-require('hover.css');
+//require('hover.css');
 
 /*$(document).ready(function() {
  alert('test');

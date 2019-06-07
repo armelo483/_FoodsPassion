@@ -4,6 +4,13 @@ parameters:
     #parameter_name: value
 
 services:
+
+    services:
+        # ...
+        my_user_provider:
+            class: UserBundle\Security\Core\User\FOSUBUserProvider
+            arguments: ['@fos_user.user_manager',{facebook: facebook_id}]
+
     # default configuration for services in *this* file
     _defaults:
         # automatically injects dependencies in your services

@@ -19,6 +19,8 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new \Vich\UploaderBundle\VichUploaderBundle(),
             new \EasyCorp\Bundle\EasyAdminBundle\EasyAdminBundle(),
+            new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
+            new Http\HttplugBundle\HttplugBundle(),
             new AppBundle\AppBundle(),
 
         ];
