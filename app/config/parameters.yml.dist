@@ -18,7 +18,3 @@ parameters:
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt
     app.path.product_images: /uploads/images/products
-
-    # Parametre connexion facebook
-    facebook_client_id: 255167288701192
-    facebook_client_secret: 276c991b36936160b6cdd8f6ead575e3

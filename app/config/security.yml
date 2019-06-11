@@ -1,6 +1,5 @@
 # To get started with security, check out the documentation:
 # https://symfony.com/doc/current/security.html
-
 security:
     encoders:
         FOS\UserBundle\Model\UserInterface: bcrypt
@@ -30,14 +29,6 @@ security:
                 csrf_token_generator: security.csrf.token_manager
 
             logout:       true
-            oauth:
-                resource_owners:
-                    facebook:       "/connect/check-facebook"
-                login_path:         /login
-                failure_path:       /login
-
-                oauth_user_provider:
-                    service: my_user_provider
             # activate different ways to authenticate
 
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
