@@ -28,6 +28,19 @@ security:
                 provider: fos_userbundle
                 csrf_token_generator: security.csrf.token_manager
 
+            oauth:
+                resource_owners:
+                    facebook:           "/connect/check-facebook"
+                    #google:             "/login/check-google"
+                    #my_custom_provider: "/login/check-custom"
+                    #my_github:          "/login/check-github"
+                login_path:        /connect
+                use_forward:       false
+                failure_path:      /connect
+
+
+                oauth_user_provider:
+                    service: hwi_oauth.user.provider.fosub_bridge
             logout:       true
             # activate different ways to authenticate
 

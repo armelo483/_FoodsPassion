@@ -4,15 +4,28 @@ parameters:
     #parameter_name: value
 
 services:
-    # default configuration for services in *this* file
-    _defaults:
-        # automatically injects dependencies in your services
-        autowire: true
-        # automatically registers your services as commands, event subscribers, etc.
-        autoconfigure: true
-        # this means you cannot fetch services directly from the container via $container->get()
-        # if you need to do this, you can override this setting on individual services
-        public: false
+
+    app.form.registration:
+        class: AppBundle\Form\RegistrationType
+        tags:
+        - { name: form.type, alias: app_user_registration }
+
+    my.oauth_aware.user_provider.service:
+        # Change the class according to the location of the FOSUBUserProvider class
+        class: AppBundle\Entity\FOSUBUserProvider
+        arguments:
+        - '@fos_user.user_manager'
+        - ['nom']
+            # Inject as first argument the user_manager of FOSUserBundle
+            #user_manager: "@fos_user.user_manager"
+            # An object/array with the registered Social Media from config.yml
+            #user_response:
+                #github: github_id
+                #facebook: facebookID
+                #googleplus: googleplus_id
+                #stackexchange: stackexchange_id
+
+
 
     # makes classes in src/AppBundle available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
