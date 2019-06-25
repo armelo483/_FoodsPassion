@@ -46,6 +46,7 @@ hwi_oauth:
             type:                facebook
             client_id:           255167288701192
             client_secret:       276c991b36936160b6cdd8f6ead575e3
+            scope:               "email"
             infos_url:     "https://graph.facebook.com/me?fields=id,name,email"
             options:
                 csrf: true

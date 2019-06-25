@@ -37,6 +37,7 @@ security:
                 login_path:        /connect
                 use_forward:       false
                 failure_path:      /connect
+                default_target_path: /
 
 
                 oauth_user_provider:
