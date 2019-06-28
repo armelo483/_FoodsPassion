@@ -28,6 +28,7 @@
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right ml-auto">
+                    <li> <i class="fa fa-shopping-cart fa-2x" aria-hidden="true" style="color:white;margin-right:14px;cursor: pointer;"></i><span style="position: relative;right: 25px;bottom: 16px;" class="badge badge-danger"></span></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
                         <ul id="login-dp" class="dropdown-menu">
@@ -63,6 +64,7 @@
                                     <div class="bottom text-center">
                                         New here ? <a href="#"><b>Join Us</b></a>
                                     </div>
+                                    <i class="fas fa-shopping-cart"></i>
                                 </div>
                             </li>
                     </ul>
@@ -127,17 +129,49 @@
                     </a>
                 </div>
 
+
+
+
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#flipFlop">
+                    Click Me
+                </button>
+
+                <!-- The modal -->
+                <div class="modal fade" id="flipFlop" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h4 class="modal-title" id="modalLabel">Modal Title</h4>
+                            </div>
+                            <div class="modal-body">
+                                Modal content...
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
                 <div class="row">
                     {% for met in mets %}
-                        <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="col-lg-4 col-md-6 mb-4 hvr-float">
                             <div class="card h-100">
+                                <button class="commander">Ajouter au panier</button>
+                                <input name="{{'met'~met.idmets}}" type="hidden" value="{{ met.idmets}}" data-qte="0" />
                                 <!--<a href="#"><img class="card-img-top" src="{{ vich_uploader_asset(met, 'imageFile') }}" alt=""></a>-->
                                <a href="#"><img class="card-img-top"  src="{{ asset('build/products/' ~ met.imageUrl ) }}" width="252" height="143" alt="" >
                                 <div class="card-body">
                                     <h4 class="card-title">
                                         <a href="#">{{ met.libelle }}</a>
                                     </h4>
-                                    <h5>$24.99</h5>
+                                    <h5>{{ met.prix~'£' }}</h5>
                                     <p class="card-text">{{ met.description }}</p>
                                 </div>
                                 <div class="card-footer">

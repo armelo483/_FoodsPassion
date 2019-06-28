@@ -1,4 +1,6 @@
+//@import "fontawesome/css/fontawesome.css";
 @import "~bootstrap/scss/bootstrap";
+@import "hover/scss/hover.scss";
 
 .container-home{
   margin-top: 70px !important;
@@ -8,7 +10,27 @@
 
 }
 
+.card.h-100:hover .commander{
+  display: inline-block;
+}
 
+//boutton commander
+.commander{
+  position: absolute;
+  right: 0;
+  bottom:0;
+  //background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: none;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+//
 
 //Menu navbar
 

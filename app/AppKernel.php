@@ -22,7 +22,7 @@ class AppKernel extends Kernel
             new \Vich\UploaderBundle\VichUploaderBundle(),
             new \EasyCorp\Bundle\EasyAdminBundle\EasyAdminBundle(),
             new AppBundle\AppBundle(),
-
+            new EcommerceBundle\EcommerceBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
