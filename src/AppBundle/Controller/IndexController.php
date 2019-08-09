@@ -19,7 +19,7 @@ class IndexController extends Controller
      * @Route("/", name="homepage")
      */
     public function indexAction(Request $request)
-    {
+    { //dump($request->getSession());die;
         $mets = $this->getDoctrine()
             ->getRepository(Mets::class)
             ->findAll();

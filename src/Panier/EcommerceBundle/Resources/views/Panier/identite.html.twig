@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div class="container">
+    {{ include('@paniers/_breadcrumbs.html.twig', {'active': active})}}
+    <form action="{{ path('panier_submitidentite') }}" method="post">
+        <div >
+            <div class="form-group form-identite">
+                <label for="email">Votre email:</label>
+                <input type="email" class="form-control" id="email" placeholder="Entrez votre email" name="email">
+                {% if errorMessageMail is defined %}
+                    <span style="color: red">{{ errorMessageMail }}</span>
+                {% endif %}
+
+            </div>
+
+            <div class="form-group form-identite">
+                <label for="email">Votre tel:</label>
+                <input type="text" class="form-control" id="tel" placeholder="Entrez votre tel" name="tel">
+
+                {% if errorMessageTel is defined %}
+                    <span style="color: red">{{ errorMessageTel }}</span>
+                {% endif %}
+
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock %}

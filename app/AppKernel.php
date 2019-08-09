@@ -18,11 +18,14 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new \HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
-            new Http\HttplugBundle\HttplugBundle(),
+            //new Http\HttplugBundle\HttplugBundle(),
             new \Vich\UploaderBundle\VichUploaderBundle(),
             new \EasyCorp\Bundle\EasyAdminBundle\EasyAdminBundle(),
             new AppBundle\AppBundle(),
-            new EcommerceBundle\EcommerceBundle(),
+            //new EcommerceBundle\EcommerceBundle(),
+            new Panier\EcommerceBundle\PanierEcommerceBundle(),
+
+            //new \Symfony\Bundle\MakerBundle\MakerBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

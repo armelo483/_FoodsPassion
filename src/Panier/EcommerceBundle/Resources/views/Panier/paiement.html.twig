@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="container">
+    {{ include('@paniers/_breadcrumbs.html.twig', {'active': active})}}
+
+
+        <h2>Recapitulatif de votre commande</h2>
+        <p>Veuillez la vérifier et validez votre achat:</p>
+
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Article</th>
+                    <th>Description</th>
+                    <th>prix</th>
+                    <th>Image</th>
+                    <th>Quantité</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% set i = 0 %}
+                {% for met in commandes %}
+
+                    <tr class="prix-qte">
+                        <td>{{ met.libelle }}</td>
+                        <td>{{ met.description }}</td>
+                        <td><span class="prix" >{{ prixCommandeArray[i]~'€' }}</span></td>
+                        <td><img src="{{ asset('build/products/' ~ met.imageUrl ) }}" width="252" height="143"></td>
+                        <td><span>{{ qteCommandeArray[i] }}</span></td>
+                    </tr>
+                    {% set i = i +1 %}
+                {% endfor %}
+                <tr>
+                    <td><b>Quantité totale</b></td>
+                    <td></td>
+                    <td><span id="prixTotal">{{ prixCommandeArray[i]~'€' }}</span></td>
+                    <td></td>
+                    <td><label id="qteTotale">{{ qteCommandeArray[i] }}</label></td>
+                </tr>
+                </tbody>
+            </table>
+            <div>
+                {% set totalAmount =  prixCommandeArray[i]*100 %}
+                <form action="{{path('panier_checkout')}}" method="POST">
+                    <script
+                            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                            data-key="pk_test_ZMD0OFRYfcvwcWjXR5dKJjzS"
+                            data-amount="{{ totalAmount }}"
+                            data-name="_FoodPassion"
+                            data-description="Widget"
+                            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                            data-locale="auto"
+                            data-currency="eur">
+                    </script>
+                    <input name="totalAmount" value="{{ totalAmount }}" type="hidden" />
+                </form>
+
+            </div>
+
+
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

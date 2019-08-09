@@ -1,6 +1,20 @@
 //@import "fontawesome/css/fontawesome.css";
 @import "~bootstrap/scss/bootstrap";
-@import "hover/scss/hover.scss";
+//@import "~hover/scss/hover.scss";
+
+
+*{
+  font-family: 'Exo', sans-serif;
+}
+
+.deja-clique:after {
+  content: 'Déjà cliqué';
+}
+.deja-clique{
+  background: grey !important;
+  pointer-events:none !important;
+  cursor: not-allowed !important;
+}
 
 .container-home{
   margin-top: 70px !important;
@@ -19,9 +33,10 @@
   position: absolute;
   right: 0;
   bottom:0;
-  //background-color: #4CAF50;
-  border: none;
+  background-color: #4F805D;
   color: white;
+  border: none;
+  font-weight: bolder;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
@@ -29,6 +44,19 @@
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
+}
+
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.carousel-item, .carousel-item.active{
+
+max-height: 300px !important;
+width: 824px !important;
+  max-width: 824px !important;
 }
 //
 
@@ -86,12 +114,360 @@
 }
 //Menu navbar
 
+// BREADCRUMBS CSS
 
+
+.breadcrumb {
+  /*centering*/
+  display: inline-block;
+  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+  border-radius: 5px;
+  /* 	Lets add the numbers for each link using CSS counters. flag is the name of the counter. to be defined using counter-reset in the parent element of the links */
+  counter-reset: flag;
+}
+
+.breadcrumb a {
+  text-decoration: none;
+  outline: none;
+  display: block;
+  float: left;
+  font-size: 12px;
+  line-height: 36px;
+  color: white;
+  /*need more margin on the left of links to accomodate the numbers*/
+  padding: 0 10px 0 60px;
+  background: #666;
+  background: linear-gradient(#666, #333);
+  position: relative;
+}
+
+/*since the first link does not have a triangle before it we can reduce the left padding to make it look consistent with other links*/
+.breadcrumb a:first-child {
+  padding-left: 46px;
+  border-radius: 5px 0 0 5px; /*to match with the parent's radius*/
+}
+.breadcrumb a:first-child:before {
+  left: 14px;
+}
+.breadcrumb a:last-child {
+  border-radius: 0 5px 5px 0; /*this was to prevent glitches on hover*/
+  padding-right: 20px;
+}
+
+/*hover/active styles*/
+.breadcrumb a.active, .breadcrumb a:hover{
+  background: #333;
+  background: linear-gradient(#333, #000);
+}
+.breadcrumb a.active:after, .breadcrumb a:hover:after {
+  background: #333;
+  background: linear-gradient(135deg, #333, #000);
+}
+
+/*adding the arrows for the breadcrumbs using rotated pseudo elements*/
+.breadcrumb a:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -18px; /*half of square's length*/
+  /*same dimension as the line-height of .breadcrumb a */
+  width: 36px;
+  height: 36px;
+  /*as you see the rotated square takes a larger height. which makes it tough to position it properly. So we are going to scale it down so that the diagonals become equal to the line-height of the link. We scale it to 70.7% because if square's:
+  length = 1; diagonal = (1^2 + 1^2)^0.5 = 1.414 (pythagoras theorem)
+  if diagonal required = 1; length = 1/1.414 = 0.707*/
+  transform: scale(0.707) rotate(45deg);
+  /*we need to prevent the arrows from getting buried under the next link*/
+  z-index: 1;
+  /*background same as links but the gradient will be rotated to compensate with the transform applied*/
+  background: #666;
+  background: linear-gradient(135deg, #666, #333);
+  /*stylish arrow design using box shadow*/
+  box-shadow:
+          2px -2px 0 2px rgba(0, 0, 0, 0.4),
+          3px -3px 0 2px rgba(255, 255, 255, 0.1);
+  /*
+      5px - for rounded arrows and
+      50px - to prevent hover glitches on the border created using shadows*/
+  border-radius: 0 5px 0 50px;
+}
+/*we dont need an arrow after the last link*/
+.breadcrumb a:last-child:after {
+  content: none;
+}
+/*we will use the :before element to show numbers*/
+.breadcrumb a:before {
+  content: counter(flag);
+  counter-increment: flag;
+  /*some styles now*/
+  border-radius: 100%;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  margin: 8px 0;
+  position: absolute;
+  top: 0;
+  left: 30px;
+  background: #444;
+  background: linear-gradient(#444, #222);
+  font-weight: bold;
+  text-align: center;
+
+}
+.fa-shopping-link.dropdown-toggle:hover{
+  color: transparent !important;
+  text-decoration: none !important;
+
+}
+.fa-shopping-link.dropdown-toggle::after{
+  content: none !important;
+}
+.form-identite {
+  width: 400px;
+}
+
+
+.flat a, .flat a:after {
+  background: white;
+  color: black;
+  transition: all 0.5s;
+}
+.flat a:before {
+  background: white;
+  box-shadow: 0 0 0 1px #ccc;
+}
+.flat a:hover, .flat a.active,
+.flat a:hover:after, .flat a.active:after{
+  background: #9EEB62;
+}
+
+
+/***
+Alert Success
+ */
+
+.alert-success {
+  opacity: 0;
+  animation: fadeInDown 1.7s ease-in-out 0s forwards;
+}
+
+.alert-success_out {
+  opacity: 0;
+  animation: fadeOutUp 1.5s ease-in-out 0s;
+  animation-direction: normal;
+}
+
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    //-webkit-transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+
+
+@keyframes fadeOutUp {
+  from {
+    opacity: 0;
+    //-webkit-transform: translate3d(0, -100%, 0);
+    //transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    border: 1px solid red;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
 
 // Alert
 
 #greenAlert{
-  margin-top:56px;
+  position: relative;
+  top:57px;
 }
 
-//
+/**
+COnfirmation paiement
+ */
+
+
+.animateClass{
+  animation-name: example;
+  -webkit-animation-fill-mode:forwards;
+  animation-duration: 3s;
+  //animation-iteration-count: infinite;
+  animation-timing-function: linear;
+
+}
+
+#mainId{
+  width:720px;
+  background: grey;
+  //height:160px;
+  box-shadow: 2px 2px 0px #aaa;
+  opacity:0;
+  position: relative;
+  left:0px;
+
+}
+
+@keyframes example {
+  0%   {opacity:0;left:0px;}
+  15%  {opacity:0.1;left:10px;}
+  100% {opacity:1;left:100px;}
+}
+
+
+a.list-group-item {
+  text-decoration: none;
+
+}
+a.list-group-item:hover{
+  background: indianred;
+  color: white;
+}
+a.list-group-item.active{
+  background: indianred !important;
+  border-color: indianred !important;
+}
+//Barre de recherche
+@import url(https://fonts.googleapis.com/css?family=Lato:100,300,400,700);
+@import url(https://raw.github.com/FortAwesome/Font-Awesome/master/docs/assets/css/font-awesome.min.css);
+
+
+#wrap {
+  display: inline-block;
+  position: relative;
+  height: 38px;
+  float: right;
+  padding: 0;
+  position: relative;
+}
+
+#search {
+  height: 60px;
+  font-size: 55px;
+  display: inline-block;
+  font-family: "Lato";
+  font-weight: 100;
+  border: none;
+  outline: none;
+  color: #555;
+  padding: 3px;
+  padding-right: 60px;
+  width: 0px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: none;
+  z-index: 3;
+  transition: width .4s cubic-bezier(0.000, 0.795, 0.000, 1.000);
+  cursor: pointer;
+}
+
+#search:focus:hover {
+  border-bottom: 1px solid #BBB;
+}
+
+#search:focus {
+  width: 700px;
+  z-index: 1;
+  border-bottom: 1px solid #BBB;
+  cursor: text;
+}
+#search_submit {
+  height: 67px;
+  width: 63px;
+  display: inline-block;
+  color:red;
+  float: right;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAADNQTFRFU1NT9fX1lJSUXl5e1dXVfn5+c3Nz6urqv7+/tLS0iYmJqampn5+fysrK39/faWlp////Vi4ZywAAABF0Uk5T/////////////////////wAlrZliAAABLklEQVR42rSWWRbDIAhFHeOUtN3/ags1zaA4cHrKZ8JFRHwoXkwTvwGP1Qo0bYObAPwiLmbNAHBWFBZlD9j0JxflDViIObNHG/Do8PRHTJk0TezAhv7qloK0JJEBh+F8+U/hopIELOWfiZUCDOZD1RADOQKA75oq4cvVkcT+OdHnqqpQCITWAjnWVgGQUWz12lJuGwGoaWgBKzRVBcCypgUkOAoWgBX/L0CmxN40u6xwcIJ1cOzWYDffp3axsQOyvdkXiH9FKRFwPRHYZUaXMgPLeiW7QhbDRciyLXJaKheCuLbiVoqx1DVRyH26yb0hsuoOFEPsoz+BVE0MRlZNjGZcRQyHYkmMp2hBTIzdkzCTc/pLqOnBrk7/yZdAOq/q5NPBH1f7x7fGP4C3AAMAQrhzX9zhcGsAAAAASUVORK5CYII=) center center no-repeat;
+  text-indent: -10000px;
+  border: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  cursor: pointer;
+  opacity: 0.4;
+  cursor: pointer;
+  transition: opacity .4s ease;
+}
+
+#search_submit:hover {
+  opacity: 0.8;
+}
+
+//Snow effect
+/* customizable snowflake styling */
+.snowflake {
+  color: #fff;
+  font-weight: bolder;
+  font-size: 1em;
+  font-family: Arial;
+  text-shadow: 0 0 1px #000;
+}
+
+@-webkit-keyframes snowflakes-fall{0%{top:-10%}100%{top:100%}}@-webkit-keyframes snowflakes-shake{0%{-webkit-transform:translateX(0px);transform:translateX(0px)}50%{-webkit-transform:translateX(80px);transform:translateX(80px)}100%{-webkit-transform:translateX(0px);transform:translateX(0px)}}@keyframes snowflakes-fall{0%{top:-10%}100%{top:100%}}@keyframes snowflakes-shake{0%{transform:translateX(0px)}50%{transform:translateX(80px)}100%{transform:translateX(0px)}}.snowflake{position:fixed;top:-10%;z-index:9999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;cursor:default;-webkit-animation-name:snowflakes-fall,snowflakes-shake;-webkit-animation-duration:10s,3s;-webkit-animation-timing-function:linear,ease-in-out;-webkit-animation-iteration-count:infinite,infinite;-webkit-animation-play-state:running,running;animation-name:snowflakes-fall,snowflakes-shake;animation-duration:10s,3s;animation-timing-function:linear,ease-in-out;animation-iteration-count:infinite,infinite;animation-play-state:running,running}.snowflake:nth-of-type(0){left:1%;-webkit-animation-delay:0s,0s;animation-delay:0s,0s}.snowflake:nth-of-type(1){left:10%;-webkit-animation-delay:1s,1s;animation-delay:1s,1s}.snowflake:nth-of-type(2){left:20%;-webkit-animation-delay:6s,.5s;animation-delay:6s,.5s}.snowflake:nth-of-type(3){left:30%;-webkit-animation-delay:4s,2s;animation-delay:4s,2s}.snowflake:nth-of-type(4){left:40%;-webkit-animation-delay:2s,2s;animation-delay:2s,2s}.snowflake:nth-of-type(5){left:50%;-webkit-animation-delay:8s,3s;animation-delay:8s,3s}.snowflake:nth-of-type(6){left:60%;-webkit-animation-delay:6s,2s;animation-delay:6s,2s}.snowflake:nth-of-type(7){left:70%;-webkit-animation-delay:2.5s,1s;animation-delay:2.5s,1s}.snowflake:nth-of-type(8){left:80%;-webkit-animation-delay:1s,0s;animation-delay:1s,0s}.snowflake:nth-of-type(9){left:90%;-webkit-animation-delay:3s,1.5s;animation-delay:3s,1.5s}
+
+
+//Animation text city cosmetics
+.word span:nth-child(1).active {
+  animation: balance 1.5s ease-out;
+  transform-origin: 0% 100% 0px;
+}
+
+@keyframes balance {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+
+  30%, 60% {
+    transform: rotate(-45deg);
+  }
+}
+
+.word span:nth-child(2).active {
+  animation: rotate 5s infinite;
+  transform-origin: bottom center;
+}
+
+@keyframes shrinkjump {
+  10%, 35% {
+    transform: scale(2, .2) translate(0, 0);
+  }
+
+  45%, 50% {
+    transform: scale(1) translate(0, -150px);
+  }
+
+  80% {
+    transform: scale(1) translate(0, 0);
+  }
+}
+
+@keyframes rotate {
+  20%, 80% {
+    transform: rotateY(180deg);
+  }
+
+  100% {
+    transform: rotateY(360deg);
+  }
+}
+
+.word span {
+  display: inline-block;
+}
+

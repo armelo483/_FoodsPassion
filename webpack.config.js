@@ -4,10 +4,10 @@ Encore
 // directory where compiled assets will be stored
     .setOutputPath('web/build/')
     .copyFiles({
-        from: './publics/uploads/images',
+        from: './publics/uploads/images/',
 
         // optional target path, relative to the output dir
-        //to: 'images/[path][name].[ext]',
+        //to: 'products',
 
         // if versioning is enabled, add the file hash too
         //to: 'images/[path][name].[hash:8].[ext]',

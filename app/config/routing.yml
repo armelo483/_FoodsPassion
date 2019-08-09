@@ -1,6 +1,10 @@
-ecommerce:
-    resource: "@EcommerceBundle/Resources/config/routing.yml"
-    prefix:   /ecommerce
+panier_ecommerce:
+    resource: "@PanierEcommerceBundle/Resources/config/routing.yml"
+    prefix:   /ecomm
+
+#ecommerce:
+    #resource: "@EcommerceBundle/Resources/config/routing.yml"
+    #prefix:   /ecommerce
 
 app:
     resource: '@AppBundle/Controller/'

@@ -2,24 +2,25 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
-    - { resource: "@EcommerceBundle/Resources/config/services.yml" }
+    - { resource: "@PanierEcommerceBundle/Resources/config/services.yml" }
+    #- { resource: "@EcommerceBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
 
-httplug:
-    clients:
-        default:
-            factory: 'httplug.factory.curl'
-        hwi_special:
-            factory: 'httplug.factory.guzzle6'
-            config: # You pass here the Guzzle configuration, exactly like before.
-                timeout: 10
-                verify: false
-                max_redirects: 1
-                ignore_errors: false
+#httplug:
+ #   clients:
+  #      default:
+   #         factory: 'httplug.factory.curl'
+    #    hwi_special:
+     #       factory: 'httplug.factory.guzzle6'
+      #      config: # You pass here the Guzzle configuration, exactly like before.
+       #         timeout: 10
+        #        verify: false
+         #       max_redirects: 1
+          #      ignore_errors: false
                 #proxy: "example.com:8080"
 
 vich_uploader:
@@ -36,8 +37,8 @@ hwi_oauth:
         registration_form: fos_user.registration.form.factory
     # list of names of the firewalls in which this bundle is active, this setting MUST be set
     firewall_names: [main]
-    http:
-        client: httplug.client.hwi_special
+    #http:
+       # client: httplug.client.hwi_special
     fosub:
         username_iterations: 30
         properties:
@@ -54,11 +55,14 @@ hwi_oauth:
 
 
 easy_admin:
+    site_name: 'City Cosmetics'
+    design:
+        brand_color: '#1ABC9C'
     entities:
         Mets:
-            label: 'Interface met'
+            label: 'Articles'
             list:
-                title: "Liste des mets dans la base"
+                title: "Liste des article City Cosmetics en vente"
                 fields:
                 #- { property: 'imageUrl',  type: 'image', base_path: '%kernel.root_dir%/publics%app.path.product_images%'}
                 - { property: 'libelle', type: 'string'}
@@ -83,6 +87,31 @@ easy_admin:
                 - { property: 'image', type: 'image', base_path: '%app.path.product_images%' }
             class: AppBundle\Entity\User
 
+
+        Commande:
+            label: 'Commandes'
+            list:
+                title: "Liste des commandes et leurs statuts"
+                fields:
+                    #- { property: 'imageUrl',  type: 'image', base_path: '%kernel.root_dir%/publics%app.path.product_images%'}
+                    - { property: 'id', type: 'string'}
+                    - { property: 'owner', type: 'string'}
+                    - { property: 'tel', type: 'string'}
+                    - { property: 'status', type: 'string'}
+
+            form:
+                fields:
+                    - { property: 'owner', type: 'string'}
+                    - { property: 'id', type: 'string'}
+                    - { property: 'tel', type: 'string'}
+                    - { property: 'status', type: 'string'}
+            show:
+                fields:
+                    - { property: 'owner', type: 'string'}
+                    - { property: 'tel', type: 'string'}
+                    - { property: 'status', type: 'string'}
+
+            class: Panier\EcommerceBundle\Entity\Commande
 
 framework:
     #esi: ~
@@ -113,6 +142,8 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    paths:
+        '%kernel.project_dir%/src/panier/ecommercebundle/resources/views/panier': paniers
 
 # Doctrine Configuration
 doctrine:
@@ -124,6 +155,8 @@ doctrine:
         user: '%database_user%'
         password: '%database_password%'
         charset: UTF8
+        types:
+            uuid:  Ramsey\Uuid\Doctrine\UuidType
         # if using pdo_sqlite as your database driver:
         #   1. add the path in parameters.yml
         #     e.g. database_path: '%kernel.project_dir%/var/data/data.sqlite'

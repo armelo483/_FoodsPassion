@@ -2,16 +2,20 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Panier\EcommerceBundle\Entity\Commande;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\JoinTable;
 
 /**
  * Mets
  *
  * @ORM\HasLifecycleCallbacks
  * @ORM\Table(name="mets", uniqueConstraints={@ORM\UniqueConstraint(name="metscol_UNIQUE", columns={"metscol"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\MetsRepository")
  * @Vich\Uploadable
  */
 class Mets
@@ -19,11 +23,11 @@ class Mets
     /**
      * @var integer
      *
-     * @ORM\Column(name="idmets", type="integer")
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $idmets;
+    private $id;
 
     /**
      * @var string
@@ -55,9 +59,10 @@ class Mets
     /**
      * @var string
      *
-     * @ORM\Column(name="libelle", type="string", length=15, nullable=true)
+     * @ORM\Column(name="libelle", type="string", length=75, nullable=true)
      */
     private $libelle;
+
 
     /**
      * @var string
@@ -80,6 +85,40 @@ class Mets
      */
     private $prix;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="stock", type="integer", nullable=true, options={"default" : 1})
+     */
+    private $stock;
+
+    /**
+     *
+     * @ORM\ManyToMany(targetEntity="Panier\EcommerceBundle\Entity\Commande", cascade={"persist"},mappedBy="mets")
+     * @ORM\JoinTable(name="commande_mets",
+     *      joinColumns={@ORM\JoinColumn(name="met_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="commande_id", referencedColumnName="id")}
+     *      )
+     * @var Collection
+     */
+
+    private $commandes;
+
+    /**
+     * @return mixed
+     */
+    public function getCommandes()
+    {
+        return $this->commandes;
+    }
+
+    /**
+     * @param mixed $commandes
+     */
+    public function setCommandes($commandes)
+    {
+        $this->commandes = $commandes;
+    }
 
 
     /**
@@ -87,7 +126,7 @@ class Mets
      */
     public function onPrePersistSetRegistrationDate()
     {
-        //$this->updatedAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
     }
 
 
@@ -238,6 +277,113 @@ class Mets
     }
 
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->commandes = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+
+
+    /**
+     * Add commande
+     *
+     * @param \Panier\EcommerceBundle\Entity\Commande $commande
+     *
+     * @return Mets
+     */
+    public function addCommande(\Panier\EcommerceBundle\Entity\Commande $commande)
+    {
+        if ($this->commandes->contains($commande)) {
+            // Do nothing if its already part of our collection
+            return;
+        }
+
+        $this->commandes[] = $commande;
+        $commande->addMet($this);
+        return $this;
+    }
+
+    /**
+     * Remove commande
+     *
+     * @param \Panier\EcommerceBundle\Entity\Commande $commande
+     */
+    public function removeCommande(\Panier\EcommerceBundle\Entity\Commande $commande)
+    {
+        if (!$this->commandes->contains($commande)) {
+            return;
+        }
+
+        $this->commandes->removeElement($commande);
+        $commande->removeMet($this);
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+
+
+    /**
+     * Set qte
+     *
+     * @param integer $qte
+     *
+     * @return Mets
+     */
+    public function setQte($qte)
+    {
+        $this->qte = $qte;
+
+        return $this;
+    }
+
+    /**
+     * Get qte
+     *
+     * @return integer
+     */
+    public function getQte()
+    {
+        return $this->qte;
+    }
+
+    /**
+     * Set stock
+     *
+     * @param integer $stock
+     *
+     * @return Mets
+     */
+    public function setStock($stock)
+    {
+        $this->stock = $stock;
+
+        return $this;
+    }
+
+    /**
+     * Get stock
+     *
+     * @return integer
+     */
+    public function getStock()
+    {
+        return $this->stock;
+    }
 }
-

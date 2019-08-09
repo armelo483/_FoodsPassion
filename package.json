@@ -1,8 +1,11 @@
 {
   "devDependencies": {
     "@symfony/webpack-encore": "^0.27.0",
+    "encore": "^0.0.30-beta",
+    "hover": "^3.0.0-alpha.6",
     "jquery": "^3.4.1",
     "node-sass": "^4.12.0",
+    "popper.js": "^1.15.0",
     "sass-loader": "7.0.1"
   },
   "dependencies": {

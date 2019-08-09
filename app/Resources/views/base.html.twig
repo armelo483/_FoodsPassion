@@ -2,19 +2,24 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Bienvenue à foodPassion !{% endblock %}</title>
+        <title>{% block title %}Bienvenue à Cityshop Cosmetic !{% endblock %}</title>
         {% block stylesheets %}{# 'app' must match the first argument to addEntry() in webpack.config.js #}
             <link rel="stylesheet" href="/build/app.css">
+            <link href="https://fonts.googleapis.com/css?family=Exo&display=swap" rel="stylesheet">
             <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
             <!-- Renders a link tag (if your module requires any CSS)
                  <link rel="stylesheet" href="/build/app.css"> -->{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
     </head>
     <body>
         {% block body %}{% endblock %}
         {% block javascripts %}
-
             <script src="/build/runtime.js"></script>
+            <script
+                    src="https://code.jquery.com/jquery-3.4.1.min.js"
+                    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+                    crossorigin="anonymous"></script>
             <script src="/build/app.js"></script>
             <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 

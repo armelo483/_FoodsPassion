@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+        {{ include('@paniers/_breadcrumbs.html.twig', {'active': active})}}
+
+        <h2>Recapitulatif de votre panier</h2>
+        <p>Veuillez verifier votre commande:</p>
+    <form action="{{ path('panier_identite') }}" method="post">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Article</th>
+                <th>Description</th>
+                <th>prix</th>
+                <th>Image</th>
+                <th>Quantité</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% set QteTotale = 0 %}
+            {% set PrixTotal = 0 %}
+            {% for commande in commandes %}
+                {% set QteTotale = QteTotale +1 %}
+                {% set PrixTotal = PrixTotal + commande.prix %}
+            <tr class="prix-qte">
+                <td>{{ commande.libelle }}</td>
+                <td>{{ commande.description }}</td>
+                <td><span id="prix_{{ commande.id}}" data-prix="{{ commande.prix}}" class="prix" >{{ commande.prix~'€' }}</span></td><input type="hidden" name="prixUnitaire_{{ commande.id}}" value="{{ commande.prix}}"/>
+                <td><img src="{{ asset('build/products/' ~ commande.imageUrl ) }}" width="252" height="143"></td>
+                <td><input type="number" id="qte_{{ commande.id}}" min="0" max="{{ commande.stock }}" name="qteCommandee_{{ commande.id}}" placeholder="" value="1" style="width:40px;" class="qte-input"></td>
+            </tr>
+
+            {% endfor %}
+            <tr>
+                <td><b>Quantité totale</b></td>
+                <td></td>
+                <td><span data-prixTotal="{{ PrixTotal}}" id="prixTotal">{{ PrixTotal~'€' }}</span></td>
+                <td></td>
+                <td><label id="qteTotale">{{ QteTotale }}</label></td>
+            </tr>
+            </tbody>
+        </table>
+        <div>
+            <button type="submit" class="btn btn-secondary">Valider le panier</button>
+        </div>
+    </form>
+    </div>
+
+
+
+{% endblock %}
