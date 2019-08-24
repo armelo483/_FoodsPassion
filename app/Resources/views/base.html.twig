@@ -6,13 +6,24 @@
         {% block stylesheets %}{# 'app' must match the first argument to addEntry() in webpack.config.js #}
             <link rel="stylesheet" href="/build/app.css">
             <link href="https://fonts.googleapis.com/css?family=Exo&display=swap" rel="stylesheet">
-            <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-            <!-- Renders a link tag (if your module requires any CSS)
+            <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
+
+                        <!-- Renders a link tag (if your module requires any CSS)
                  <link rel="stylesheet" href="/build/app.css"> -->{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
     </head>
     <body>
+    <!-- loader -->
+    <div class="main" >
+        <div class="loader">
+            <div id="loading" class="loader-inner square-spin">
+                <div></div>
+            </div><span class="tooltip">
+          <p>ball-grid-pulse</p></span>
+        </div>
+    </div>
+    <!-- loader -->
         {% block body %}{% endblock %}
         {% block javascripts %}
             <script src="/build/runtime.js"></script>

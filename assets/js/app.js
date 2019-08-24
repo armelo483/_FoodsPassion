@@ -1,12 +1,13 @@
 // loads the jquery package from node_modules
 import '../css/app.scss';
 var $ = require('jquery');
-
 require('bootstrap');
-require('animate.css');
+require ('loaders.css/loaders.css');
+//require('animate.css');
 //require('hover.css');
 
 $(document).ready(function() {
+   // $('.loader-inner').loaders();
     /**
      * City Cometic text animation
      */
@@ -21,6 +22,9 @@ $(document).ready(function() {
     _bindClickCommandButton();
     __onChangeInput();
 
+    $("button[type='submit']").click(function(e) {
+        $('.main').show();
+    });
     $(".list-group-item").click(function(e) {
         if($(this).hasClass('active')){
             $(this).removeClass('active');

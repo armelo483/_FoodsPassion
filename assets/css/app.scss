@@ -1,5 +1,6 @@
-//@import "fontawesome/css/fontawesome.css";
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
 @import "~bootstrap/scss/bootstrap";
+@import "~loaders.css/loaders.min.css";
 //@import "~hover/scss/hover.scss";
 
 
@@ -7,110 +8,142 @@
   font-family: 'Exo', sans-serif;
 }
 
+#loading {
+  position: relative;
+  left: 770px;
+  top: 310px;
+}
+.square-spin>div {
+  border-style: none !important;
+  background: #CD5C5C !important;
+  opacity: 0.4 !important;
+}
+
+.main {
+z-index: 1136;
+  display: none;
+opacity: 0.77;
+position: absolute;
+top: 0;
+right: 0;
+bottom: 0;
+left: 0;
+height: 2000px;
+}
+.main:after {
+position: absolute;
+content:"";
+width: 100%;
+background: white;
+height: 100%;
+left:0;
+  top:0;
+z-index:-1;
+}
 .deja-clique:after {
-  content: 'Déjà cliqué';
+content: 'Déjà cliqué';
 }
 .deja-clique{
-  background: grey !important;
-  pointer-events:none !important;
-  cursor: not-allowed !important;
+background: grey !important;
+pointer-events:none !important;
+cursor: not-allowed !important;
 }
 
 .container-home{
-  margin-top: 70px !important;
+margin-top: 70px !important;
 }
 .card-img-top{
-  object-fit: contain;
+object-fit: contain;
 
 }
 
 .card.h-100:hover .commander{
-  display: inline-block;
+display: inline-block;
 }
 
 //boutton commander
 .commander{
-  position: absolute;
-  right: 0;
-  bottom:0;
-  background-color: #4F805D;
-  color: white;
-  border: none;
-  font-weight: bolder;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: none;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
+position: absolute;
+right: 0;
+bottom:0;
+background-color: #4F805D;
+color: white;
+border: none;
+font-weight: bolder;
+padding: 15px 32px;
+text-align: center;
+text-decoration: none;
+display: none;
+font-size: 16px;
+margin: 4px 2px;
+cursor: pointer;
 }
 
 
 img {
-  max-width: 100%;
-  max-height: 100%;
+max-width: 100%;
+max-height: 100%;
 }
 
 .carousel-item, .carousel-item.active{
 
 max-height: 300px !important;
 width: 824px !important;
-  max-width: 824px !important;
+max-width: 824px !important;
 }
 //
 
 //Menu navbar
 
 #login-dp{
-  min-width: 250px;
-  padding: 14px 14px 0;
-  overflow:hidden;
-  background-color:rgba(255,255,255,.8);
+min-width: 250px;
+padding: 14px 14px 0;
+overflow:hidden;
+background-color:rgba(255,255,255,.8);
 }
 #login-dp .help-block{
-  font-size:12px
+font-size:12px
 }
 #login-dp .bottom{
-  background-color:rgba(255,255,255,.8);
-  border-top:1px solid #ddd;
-  clear:both;
-  padding:14px;
+background-color:rgba(255,255,255,.8);
+border-top:1px solid #ddd;
+clear:both;
+padding:14px;
 }
 #login-dp .social-buttons{
-  margin:12px 0
+margin:12px 0
 }
 #login-dp .social-buttons a{
-  width: 49%;
+width: 49%;
 }
 #login-dp .form-group {
-  margin-bottom: 10px;
+margin-bottom: 10px;
 }
 .btn-fb{
-  color: #fff;
-  background-color:#3b5998;
+color: #fff;
+background-color:#3b5998;
 }
 .btn-fb:hover{
-  color: #fff;
-  background-color:#496ebc
+color: #fff;
+background-color:#496ebc
 }
 .btn-tw{
-  color: #fff;
-  background-color:#55acee;
+color: #fff;
+background-color:#55acee;
 }
 .btn-tw:hover{
-  color: #fff;
-  background-color:#59b5fa;
+color: #fff;
+background-color:#59b5fa;
 }
 @media(max-width:768px){
-  #login-dp{
-    background-color: inherit;
-    color: #fff;
-  }
-  #login-dp .bottom{
-    background-color: inherit;
-    border-top:0 none;
-  }
+#login-dp{
+  background-color: inherit;
+  color: #fff;
+}
+#login-dp .bottom{
+  background-color: inherit;
+  border-top:0 none;
+}
 }
 //Menu navbar
 
@@ -118,7 +151,7 @@ width: 824px !important;
 
 
 .breadcrumb {
-  /*centering*/
+/*centering*/
   display: inline-block;
   box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.35);
   overflow: hidden;
@@ -439,7 +472,7 @@ a.list-group-item.active{
 }
 
 .word span:nth-child(2).active {
-  animation: rotate 5s infinite;
+  animation: rotates 5s infinite;
   transform-origin: bottom center;
 }
 
@@ -457,7 +490,7 @@ a.list-group-item.active{
   }
 }
 
-@keyframes rotate {
+@keyframes rotates {
   20%, 80% {
     transform: rotateY(180deg);
   }

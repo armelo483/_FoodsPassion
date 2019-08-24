@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.10.1",
     "@symfony/webpack-encore": "^0.27.0",
     "encore": "^0.0.30-beta",
     "hover": "^3.0.0-alpha.6",
@@ -11,6 +12,7 @@
   "dependencies": {
     "animate.css": "^3.7.0",
     "bootstrap": "4.3.1",
-    "bootstrap-sass": "^3.4.1"
+    "bootstrap-sass": "^3.4.1",
+    "loaders.css": "^0.1.2"
   }
 }
