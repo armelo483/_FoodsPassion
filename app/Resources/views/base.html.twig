@@ -2,18 +2,21 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Bienvenue à Cityshop Cosmetic !{% endblock %}</title>
+        <title>{% block title %}Bienvenue à Black Angel's !{% endblock %}</title>
         {% block stylesheets %}{# 'app' must match the first argument to addEntry() in webpack.config.js #}
             <link rel="stylesheet" href="/build/app.css">
             <link href="https://fonts.googleapis.com/css?family=Exo&display=swap" rel="stylesheet">
             <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
-
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet">
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css" rel="stylesheet">
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-notify/0.2.0/css/bootstrap-notify.min.css" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css?family=Modak|Yanone+Kaffeesatz&display=swap" rel="stylesheet">
                         <!-- Renders a link tag (if your module requires any CSS)
                  <link rel="stylesheet" href="/build/app.css"> -->{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
     </head>
-    <body>
+    <body style="background:black;">
     <!-- loader -->
     <div class="main" >
         <div class="loader">
@@ -33,6 +36,71 @@
                     crossorigin="anonymous"></script>
             <script src="/build/app.js"></script>
             <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/mouse0270-bootstrap-notify/3.1.5/bootstrap-notify.min.js"></script>
+
+            <script type="application/javascript">
+                var successClick = function(){
+                    $.notify({
+                        // options
+                        icon: 'https://scontent.fdla3-1.fna.fbcdn.net/v/t1.0-9/34137526_863741183809955_2243235678961795072_n.jpg?_nc_cat=100&_nc_oc=AQnWxEnL9FyKRlFceNJMyFl8chfYwy1biNxGqFlVBpinFvaP3pAQ87FVqrwAmSm2H-o&_nc_ht=scontent.fdla3-1.fna&oh=cf1d8b734898cb0aa534952a8da911ab&oe=5DF4BF29',
+                        title: 'Byron Morgan',
+                        message: 'Momentum reduce child mortality effectiveness incubation empowerment connect.',
+                        url: 'https://github.com/mouse0270/bootstrap-notify',
+                        target: '_blank'
+                    },{
+                        // settings
+                        element: 'body',
+                        type: 'minimalist',
+                        icon_type: 'image',
+                        template: '<div class="modal-content" style="width: 500px;">\n' +
+                            '      \n' +
+                            '        <!-- Modal Header -->\n' +
+                            '        <div class="modal-header" style="background: #000000;color: white;">\n' +
+                            '<img data-notify="icon" class="img-circle pull-left" width="52" height="52">' +
+                            '          <h4 class="modal-title" style="position: relative; top:10px;margin-left: 10px;">Prochains évènements</h4>\n' +
+                            '          <button type="button" class="close" data-dismiss="modal">&times;</button>\n' +
+                            '        </div>\n' +
+                            '        \n' +
+                            '        <!-- Modal body -->\n' +
+                            '        <div class="modal-body" >\n' +
+                            '         <img src="https://i2.wp.com/thedreamer.cm/wp-content/uploads/2018/06/Screenshot_20180608-180138.jpg?w=1440&ssl=1" class="img-circle pull-left" >' +
+                            '        </div>\n' +
+                            '        \n' +
+                            '        <!-- Modal footer -->\n' +
+                            '        <div class="modal-footer" style="background: #343A40;">\n' +
+                            '          <p style="color:white;">N\'oubliez pas pour juin 2019, concert exceptionnel avec les plus grandes stars </p>\n' +
+                            '          <button type="button" class="btn btn-success">Je réserve ma place </button>\n' +
+                            '        </div>\n' +
+                            '        \n' +
+                            '      </div>\n' +
+                            '    </div>',
+                        //allow_dismiss: true,
+                        //newest_on_top: false,
+                        showProgressbar: true,
+                        placement: {
+                            from: "bottom",
+                            align: "right"
+                        },
+                        offset: 40,
+                        spacing: 10,
+                        z_index: 1031,
+                        delay: 10000,
+                        timer: 7000,
+                        url_target: '_blank',
+                        mouse_over: null,
+                        animate: {
+                            enter: 'animated fadeInUp',
+                            exit: 'animated lightSpeedOut'
+                        },
+                        onShow: null,
+                        onShown: null,
+                        onClose: null,
+                        onClosed: null,
+                    });
+                }
+
+            </script>
+
 
         {% endblock %}
 

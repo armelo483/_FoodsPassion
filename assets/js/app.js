@@ -1,13 +1,19 @@
 // loads the jquery package from node_modules
 import '../css/app.scss';
-var $ = require('jquery');
+//var $ = require('jquery');
 require('bootstrap');
 require ('loaders.css/loaders.css');
 //require('animate.css');
 //require('hover.css');
 
+//notify
+
+
+
 $(document).ready(function() {
-   // $('.loader-inner').loaders();
+
+    successClick();
+    //$('.main').show();
     /**
      * City Cometic text animation
      */
