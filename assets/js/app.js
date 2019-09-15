@@ -89,6 +89,8 @@ function _bindClickCommandButton(){
     nbArticlesSession = $('.badge.badge-danger').html();
     $( ".commander" ).click(function() {
         var $inputQte = $(this).next();
+        var $overLay = $(this).parent().find('.overlay');
+        $overLay.css('display', 'block');
         var idMet = $inputQte.val();
         //var nbArticlesMet = $inputQte.data('qte');
 
@@ -112,12 +114,11 @@ function __ajouterPanier(metId, $clickedButton){
     }
 
     $clickedButton.unbind();
-    $clickedButton.show();
-
-    $clickedButton.html('Déjà cliqué');
+    $clickedButton.css('display','block');
+    $clickedButton.html('<i class="fa fa-check"></i>');
     $clickedButton.addClass('deja-clique');
 
-    $clickedButton.parent().css('opacity', '0.3');
+    //$clickedButton.parent().css('opacity', '0.3');
     $.ajax({
         type: "GET",
         url: "ecomm/ajouter",

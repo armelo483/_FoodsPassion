@@ -193,7 +193,7 @@
     {% for met in mets %}
         {% set panierArray = app.session.get('panier') %}
         <div class="col-lg-4 col-md-6 mb-4  animated bounceInLeft delay-10s" style="margin-bottom: 60px !important;">
-            <div class="card h-100 hvr-bounce-in" {% if met.id in panierArray|keys %} style="opacity: 0.3;" {% endif %}>
+            <div class="card h-100 hvr-bounce-in">
                 <button class="commander {% if met.id in panierArray|keys %}deja-clique{% endif %}" id="Button{{ met.id}}">{% if met.id not in panierArray|keys %}<span>Ajouter au panier</span>{% endif %}</button>
                 <input name="{{'met'~met.id}}" type="hidden" value="{{ met.id}}" data-qte="0" />
                 <!--<a href="#"><img class="card-img-top" src="{{ vich_uploader_asset(met, 'imageFile') }}" alt=""></a>-->
@@ -208,7 +208,12 @@
                 <div class="card-footer">
                     <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                 </div>
+
+                   <div class="overlay" {% if met.id in panierArray|keys %} style="display: block;" {% endif %}>
+                       <img  src="{{ asset('build/products/logoBAE.jpg') }}" alt="">
+                   </div>
             </div>
+
         </div><br><br>
     {% endfor %}
 

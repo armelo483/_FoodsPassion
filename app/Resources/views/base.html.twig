@@ -53,11 +53,14 @@
                         type: 'minimalist',
                         icon_type: 'image',
                         template: '<div class="modal-content" style="width: 500px;">\n' +
+                            '<div class="progress" data-notify="progressbar">' +
+                            '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+                            '</div>' +
                             '      \n' +
                             '        <!-- Modal Header -->\n' +
                             '        <div class="modal-header" style="background: #000000;color: white;">\n' +
                             '<img data-notify="icon" class="img-circle pull-left" width="52" height="52">' +
-                            '          <h4 class="modal-title" style="position: relative; top:10px;margin-left: 10px;">Prochains évènements</h4>\n' +
+                            '          <h4 class="modal-title" style="position: relative; top:10px;margin-left: 10px;">Prochain évènement</h4>\n' +
                             '          <button type="button" class="close" data-dismiss="modal">&times;</button>\n' +
                             '        </div>\n' +
                             '        \n' +
@@ -85,9 +88,10 @@
                         spacing: 10,
                         z_index: 1031,
                         delay: 10000,
-                        timer: 7000,
+                        timer: 100,
                         url_target: '_blank',
                         mouse_over: null,
+                        allow_dismiss: true,
                         animate: {
                             enter: 'animated fadeInUp',
                             exit: 'animated lightSpeedOut'
