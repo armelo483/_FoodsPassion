@@ -48,6 +48,106 @@ background: grey !important;
 pointer-events:none !important;
 cursor: not-allowed !important;
 }
+.splashscreen-div{
+  text-shadow: 1px 1px 0 black,
+  10px 2px 0 black;
+}
+.logo-bae{
+  animation-name: spin;
+  animation-duration: 4000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes spin {
+  from {
+    transform:rotateY(0deg);
+  }
+  to {
+    transform:rotateY(360deg);
+  }
+}
+
+.splashscreen {
+  position: absolute;
+  top:0;
+  left:0;
+  height:100%;
+  width:100%;
+  background: black;
+  color: white;
+  z-index: 7000;
+  animation-delay: 9s;
+  text-align:center;
+  font-weight:300;
+  font-size:32px;
+  padding-top:20vh;
+  overflow:hidden;
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  -webkit-transform: translate3d(0,0,0);
+
+}
+
+.splashscreen div {
+  display:inline-block;
+  overflow:hidden;
+  white-space:nowrap;
+}
+
+.splashscreen div:first-of-type {    /* For increasing performance
+                       ID/Class should've been used.
+                       For a small demo
+                       it's okaish for now */
+  animation: showup 21s forwards;
+}
+
+.splashscreen div:last-of-type {
+  width:0px;
+  animation: reveal 21s forwards;
+}
+
+.splash-content{
+  border: 1px solid red;
+  padding-right: 7px !important;
+}
+.splashscreen div:last-of-type span {
+  margin-left:-355px;
+  animation: slidein 21s forwards ;
+}
+
+
+@keyframes showup {
+  0% {opacity:0;}
+  20% {opacity:0.5;}
+  80% {opacity:1;}
+  100% {opacity:1;}
+}
+
+@keyframes slidein {
+  0% { margin-left:-600px; }
+  20% { margin-left:-600px; }
+  55% { margin-left:0px; }
+  100% { margin-left:0px; }
+}
+
+@keyframes reveal {
+  0% {opacity:0;width:0px;}
+  20% {opacity:0.2;width:0px;}
+  25% {opacity:0.85;width:0px;}
+  30% {width:500px;}
+  80% {opacity:1;}
+  100% {opacity:1;width:500px;}
+}
+
+
+.explode {
+  animation:letter_explode 1s 5s forwards;
+}
+@keyframes letter_explode {
+  0% {letter-spacing:0.1em;opacity:1;}
+  100% {letter-spacing:9em;opacity:0;}
+}
 
 .container-home{
 margin-top: 70px !important;

@@ -12,7 +12,8 @@ require ('loaders.css/loaders.css');
 
 $(document).ready(function() {
 
-    successClick();
+    setTimeout(notificationBAE, 40000);
+
     //$('.main').show();
     /**
      * City Cometic text animation
