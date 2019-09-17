@@ -106,6 +106,7 @@ function _bindClickCommandButton(){
 
 }
 
+function __retirerPanier(metId, $clickedButton){}
 function __ajouterPanier(metId, $clickedButton){
 
     if(nbArticlesSession!=''){
@@ -116,7 +117,7 @@ function __ajouterPanier(metId, $clickedButton){
 
     $clickedButton.unbind();
     $clickedButton.css('display','block');
-    $clickedButton.html('<i class="fa fa-check"></i>');
+    $clickedButton.html('<i class="fa fa-times fa-w-11 fa-spin fa-lg"></i> Retirez l\'article! ');
     $clickedButton.addClass('deja-clique');
 
     //$clickedButton.parent().css('opacity', '0.3');

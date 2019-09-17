@@ -9,7 +9,7 @@
 
     </div> -->
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top nav-bar-home">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top nav-bar-home" style="opacity: 0.88;">
         <div class="container">
             <a class="navbar-brand" href="#">Bienvenue!</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -124,9 +124,9 @@
 {#{% include 'index/_snow.html.twig' %}#}
 <h1 class="my-4 word">
     <span>Black</span>
-    <span style="color:white;">Angel's</span>
+    <span>Angel's</span>
 </h1>
-<span style="color:white;">Liste des filtres d'affichage</span><br>
+<span >Liste des filtres d'affichage</span><br>
 <div class="list-group">
     <a href="#" class="list-group-item active" >Tout</a>
     <a href="#" class="list-group-item">Tee-Shirt</a>
@@ -193,8 +193,8 @@
     {% for met in mets %}
         {% set panierArray = app.session.get('panier') %}
         <div class="col-lg-4 col-md-6 mb-4  animated bounceInLeft delay-10s" style="margin-bottom: 60px !important;">
-            <div class="card h-100 hvr-bounce-in">
-                <button class="commander {% if met.id in panierArray|keys %}deja-clique{% endif %}" id="Button{{ met.id}}">{% if met.id not in panierArray|keys %}<span>Ajouter au panier</span>{% endif %}</button>
+            <div class="card h-100 hvr-bounce-in" >
+                <button class="commander {% if met.id in panierArray|keys %}deja-clique{% endif %}" id="Button{{ met.id}}">{% if met.id not in panierArray|keys %}<span>Ajouter au panier</span>{% else %}<i class="fa fa-times fa-w-11 fa-spin fa-lg"></i> Retirez l'article!{% endif %}</i></button>
                 <input name="{{'met'~met.id}}" type="hidden" value="{{ met.id}}" data-qte="0" />
                 <!--<a href="#"><img class="card-img-top" src="{{ vich_uploader_asset(met, 'imageFile') }}" alt=""></a>-->
                <a href="#"><img class="card-img-top"  src="{{ asset('build/products/' ~ met.imageUrl ) }}" width="252" height="143" alt="" >
@@ -323,7 +323,7 @@
 <div class="splashscreen animated slideOutLeft">
     <div class="splashscreen-div animated bounceOutRight">Bienvenue</div>
     <div class="splashscreen-div animated flipOutX" style="position: relative;top: 54px;">
-        <span >Chez BlackAngel's</span>
+        <span >Chez </span>
         <img  class="logo-bae rounded-circle" src="{{ asset('build/products/logoBAE.jpg' ) }}"  width="200" height="150"/>
     </div>
 
