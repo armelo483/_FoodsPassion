@@ -196,6 +196,7 @@
             <div class="card h-100 hvr-bounce-in" >
                 <button class="commander {% if met.id in panierArray|keys %}deja-clique{% endif %}" id="Button{{ met.id}}">{% if met.id not in panierArray|keys %}<span>Ajouter au panier</span>{% else %}<i class="fa fa-times fa-w-11 fa-spin fa-lg"></i> Retirez l'article!{% endif %}</i></button>
                 <input name="{{'met'~met.id}}" type="hidden" value="{{ met.id}}" data-qte="0" />
+                <input type="hidden"  name="{{'dejaClique'~met.id}}" id="{{'dejaClique'~met.id}}" value="{% if met.id not in panierArray|keys %}0{% else %}1{% endif %}"/>
                 <!--<a href="#"><img class="card-img-top" src="{{ vich_uploader_asset(met, 'imageFile') }}" alt=""></a>-->
                <a href="#"><img class="card-img-top"  src="{{ asset('build/products/' ~ met.imageUrl ) }}" width="252" height="143" alt="" >
                 <div class="card-body">

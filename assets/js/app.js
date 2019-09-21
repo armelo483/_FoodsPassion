@@ -84,6 +84,7 @@ $(document).ready(function() {
 var nbArticles = 0;
 var nbArticlesSession = 0;
 var mesCommandesArray = [];
+var $alreadyClicked = '';
 
 //var monPlatObject = {id: null, qte:0};
 function _bindClickCommandButton(){
@@ -91,8 +92,10 @@ function _bindClickCommandButton(){
     $( ".commander" ).click(function() {
         var $inputQte = $(this).next();
         var $overLay = $(this).parent().find('.overlay');
-        $overLay.css('display', 'block');
+
         var idMet = $inputQte.val();
+        $alreadyClicked = $(this).next().next();
+        console.log($alreadyClicked);
         //var nbArticlesMet = $inputQte.data('qte');
 
         //nbArticles =(mesCommandesArray.hasOwnProperty(idMet))?$inputQte.data('qte'):1;
@@ -100,25 +103,63 @@ function _bindClickCommandButton(){
         mesCommandesArray.push(idMet);
 
         console.log(mesCommandesArray);
-        __ajouterPanier(idMet, $(this));
+        __ajouterPanier(idMet, $(this), $alreadyClicked,$overLay);
 
     });
 
 }
 
-function __retirerPanier(metId, $clickedButton){}
-function __ajouterPanier(metId, $clickedButton){
+function __ajouterPanier(metId, $clickedButton, $alreadyClicked, $overLay){
 
-    if(nbArticlesSession!=''){
-        $('.badge.badge-danger').html(++nbArticlesSession);
+    if($alreadyClicked.val() == '0'){
+        $clickedButton.css('display','block');
+        $clickedButton.html('<i class="fa fa-times fa-w-11 fa-spin fa-lg"></i> Retirez l\'article! ');
+        $clickedButton.addClass('deja-clique');
+        $alreadyClicked.val(1);
+        $overLay.css('display', 'block');
+        if(nbArticlesSession!=''){
+            $('.badge.badge-danger').html(++nbArticlesSession);
+        }else{
+            $('.badge.badge-danger').html(++nbArticles);
+        }
+        addItemPanier(metId);
+
     }else{
-        $('.badge.badge-danger').html(++nbArticles);
+        $clickedButton.removeClass('deja-clique');
+        $clickedButton.removeAttr('style');
+        $overLay.css('display', 'none');
+        $clickedButton.html('<span>Ajouter au panier</span>');
+
+        if(nbArticlesSession!=''){
+
+            $('.badge.badge-danger').html(--nbArticlesSession);
+        }else{
+            $('.badge.badge-danger').html(--nbArticles);
+        }
+
+        $alreadyClicked.val(0);
+        removeItemPanier(metId);
+
     }
 
-    $clickedButton.unbind();
-    $clickedButton.css('display','block');
-    $clickedButton.html('<i class="fa fa-times fa-w-11 fa-spin fa-lg"></i> Retirez l\'article! ');
-    $clickedButton.addClass('deja-clique');
+}
+
+function removeItemPanier(metId){
+    //$clickedButton.parent().css('opacity', '0.3');
+    $.ajax({
+        type: "GET",
+        url: "ecomm/remove",
+        data: {"metId": metId},
+        async: true,
+
+    })
+        .done(function( data ) {
+            $('#shoppingLink').attr('data-toggle','dropdown');
+
+            console.log(data);
+        });
+}
+function addItemPanier(metId){
 
     //$clickedButton.parent().css('opacity', '0.3');
     $.ajax({
@@ -133,9 +174,7 @@ function __ajouterPanier(metId, $clickedButton){
 
             console.log(data);
         });
-
 }
-
 function __onChangeInput(){
 
     $('.qte-input').change(function(){
