@@ -12,7 +12,31 @@ require ('loaders.css/loaders.css');
 
 $(document).ready(function() {
 
+    /*$( '#login-dp' ).on( 'showRemoved', function() {
+        var $element = $( this );
+        var timer = setInterval( function() {
+            if( $element.hasClass( 'show' ) ) {
+                //);$element.removeClass('fadeInDown'
+               // $element.addClass('lightSpeedOut ');
+            }
+        }, 10000 );
+    }).trigger( 'showRemoved' );
+
+    $('#login-dp').click(function(){
+        $(this).removeClass('fadeInDown');
+        $(this).addClass('lightSpeedOut');
+    });*/
+
+
+
     setTimeout(notificationBAE, 40000);
+    setTimeout(notificationBienvenue, 50000);
+
+
+    $('#login-dp').on('hide.bs.dropdown', function(){
+        //$(this).find('.dropdown-menu.animated').first().addClass('fadeOutUp').removeClass('fadeInDown');
+        alert('test');
+    });
 
     //$('.main').show();
     /**

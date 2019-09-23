@@ -31,27 +31,27 @@ vich_uploader:
             upload_destination: '%kernel.project_dir%/publics%app.path.product_images%'
             namer: vich_uploader.namer_uniqid
 
-hwi_oauth:
-    connect:
-        confirmation: true
-        registration_form: fos_user.registration.form.factory
+#hwi_oauth:
+ #   connect:
+  #      confirmation: true
+   #     registration_form: fos_user.registration.form.factory
     # list of names of the firewalls in which this bundle is active, this setting MUST be set
-    firewall_names: [main]
+    #firewall_names: [main]
     #http:
        # client: httplug.client.hwi_special
-    fosub:
-        username_iterations: 30
-        properties:
-            facebook: facebookID
-    resource_owners:
-        facebook:
-            type:                facebook
-            client_id:           255167288701192
-            client_secret:       276c991b36936160b6cdd8f6ead575e3
-            scope:               "email"
-            infos_url:     "https://graph.facebook.com/me?fields=id,name,email"
-            options:
-                csrf: true
+    #fosub:
+     #   username_iterations: 30
+      #  properties:
+       #     facebook: facebookID
+    #resource_owners:
+     #   facebook:
+      #      type:                facebook
+       #     client_id:           255167288701192
+        #    client_secret:       276c991b36936160b6cdd8f6ead575e3
+         #   scope:               "email"
+          #  infos_url:     "https://graph.facebook.com/me?fields=id,name,email"
+           # options:
+            #    csrf: true
 
 
 easy_admin:

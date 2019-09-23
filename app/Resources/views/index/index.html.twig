@@ -54,18 +54,33 @@
                                     <button type="submit" id="goToPanier" class="btn btn-success" style="margin-left: 7px;height: 37px;width: 137px;">Commander</button>
                                 </form>
                                 </li>
-                        </ul>
+                               </ul>
 
                     </li>
+                    {% if app.user %}
+                    <li style="color:white;">Bonjour {{ app.user.username|capitalize }} !  </li>
+                    <li style="width:30px;"> </li>
+                    <li><b><a href="{{ path('fos_user_security_logout') }}"> Déconnexion</a></b></li>
+                    <script type="application/javascript">
+                        var notificationBienvenue = function(){
+                        $.notify("Black Angel est ravi de vous revoir {{ app.user.username|capitalize }} :)", {
+                                animate: {
+                                    enter: 'animated lightSpeedIn',
+                                    exit: 'animated rollOut'
+                                }},
+                            );}
+                    </script>
+                    {% else %}
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
-                        <ul id="login-dp" class="dropdown-menu">
+                        <a href="{{ path('fos_user_security_login') }}" ><b>Connexion</b> <span class="caret"></span></a>
+                        <!--<ul id="login-dp" class="dropdown-menu animated fadeInDown">
                             <li>
                                 <div class="row">
                                     <div class="col-md-12">
                                         Login via
                                         <div class="social-buttons">
-                                            <a href="{{ path('hwi_oauth_service_redirect', {'service': 'facebook' }) }}" class="btn btn-fb"><i class="fas fas-facebook"></i> Facebook</a>
+                                            <a href="#" class="btn btn-fb"><i class="fas fas-facebook"></i> Facebook</a>
+                                           <!-- <a href="{#{{ path('hwi_oauth_service_redirect', {'service': 'facebook' }) }}#}" class="btn btn-fb"><i class="fas fas-facebook"></i> Facebook</a>
                                             <a href="#" class="btn btn-tw"><i class="fas fas-google"></i> Google</a>
                                         </div>
                                         or
@@ -77,10 +92,10 @@
                                             <div class="form-group">
                                                 <label class="sr-only" for="exampleInputPassword2">Password</label>
                                                 <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
-                                                <div class="help-block text-right"><a href="">Forget the password ?</a></div>
+                                                <div class="help-block text-right"><a href="">Mot de passe oublié ?</a></div>
                                             </div>
                                             <div class="form-group">
-                                                <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+                                                <button type="submit" class="btn btn-primary btn-block">log in</button>
                                             </div>
                                             <div class="checkbox">
                                                 <label>
@@ -90,11 +105,12 @@
                                         </form>
                                     </div>
                                     <div class="bottom text-center">
-                                        New here ? <a href="#"><b>Join Us</b></a>
+                                        Nouveau ici ? <a href="#"><b>Rejoins nous</b></a>
                                     </div>
                                 </div>
                             </li>
-                    </ul>
+                    </ul>-->
+                    {% endif %}
             </div>
         </div>
     </nav>
@@ -321,14 +337,15 @@
 </div>
 <!-- /.container -->
 </footer>
+    {% if app.user %}
 <div class="splashscreen animated slideOutLeft">
-    <div class="splashscreen-div animated bounceOutRight">Bienvenue</div>
+    <div class="splashscreen-div animated bounceOutRight">Bienvenue {{ app.user.username|capitalize }}</div>
     <div class="splashscreen-div animated flipOutX" style="position: relative;top: 54px;">
         <span >Chez </span>
         <img  class="logo-bae rounded-circle" src="{{ asset('build/products/logoBAE.jpg' ) }}"  width="200" height="150"/>
     </div>
 
-
+{% endif %}
 
 </div>
 <!-- Bootstrap core JavaScript -->

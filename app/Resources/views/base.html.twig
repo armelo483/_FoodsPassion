@@ -16,7 +16,8 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
     </head>
-    <body style="background: white;">    <!-- loader -->
+    {% block upperbody %}
+    <body style="background: white;">    <!-- loader -->{% endblock %}
     <div class="main" >
         <div class="loader">
             <div id="loading" class="loader-inner square-spin">

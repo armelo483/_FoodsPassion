@@ -13,7 +13,7 @@ security:
         in_memory:
             memory: ~
         fos_userbundle:
-            id: fos_user.user_provider.username
+            id: fos_user.user_provider.username_email
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -26,22 +26,24 @@ security:
             user_checker: security.user_checker
             form_login:
                 provider: fos_userbundle
+                check_path: /login_check
                 csrf_token_generator: security.csrf.token_manager
 
-            oauth:
-                resource_owners:
-                    facebook:           "/connect/check-facebook"
+           # oauth:
+            #    resource_owners:
+             #       facebook:           "/connect/check-facebook"
                     #google:             "/login/check-google"
                     #my_custom_provider: "/login/check-custom"
                     #my_github:          "/login/check-github"
-                login_path:        /connect
+                login_path:        /login #/connect
                 use_forward:       false
-                failure_path:      /connect
+                failure_path:      /login #/connect
+                always_use_default_target_path: false
                 default_target_path: /
 
 
-                oauth_user_provider:
-                    service: hwi_oauth.user.provider.fosub_bridge
+                #oauth_user_provider:
+                 #   service: hwi_oauth.user.provider.fosub_bridge
             logout:       true
             # activate different ways to authenticate
 
@@ -55,4 +57,5 @@ security:
     - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
     - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
     - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/ecomm/panier, role: ROLE_USER }
     #- { path: ^/admin/, role: ROLE_ADMIN }

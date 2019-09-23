@@ -12,14 +12,24 @@ use AppBundle\Entity\Mets;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 
 class IndexController extends Controller
 {
+
+    private $tokenManager;
+
+    public function __construct(CsrfTokenManagerInterface $tokenManager = null)
+    {
+        $this->tokenManager = $tokenManager;
+    }
     /**
      * @Route("/", name="homepage")
      */
     public function indexAction(Request $request)
     { //dump($request->getSession());die;
+        $session = $request->getSession();
+        $onceStartAnimation = 0;
         $mets = $this->getDoctrine()
             ->getRepository(Mets::class)
             ->findAll();
@@ -30,4 +40,6 @@ class IndexController extends Controller
             'mets' => $mets,
         ]);
     }
+
+
 }
