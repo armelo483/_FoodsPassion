@@ -30,8 +30,10 @@ $(document).ready(function() {
 
 
     setTimeout(notificationBAE, 40000);
-    setTimeout(notificationBienvenue, 50000);
 
+    if(typeof(notificationBienvenue) != "undefined" && notificationBienvenue !== null){
+        setTimeout(notificationBienvenue, 42000);
+    }
 
     $('#login-dp').on('hide.bs.dropdown', function(){
         //$(this).find('.dropdown-menu.animated').first().addClass('fadeOutUp').removeClass('fadeInDown');
