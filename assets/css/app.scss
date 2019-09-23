@@ -1,6 +1,7 @@
 @import "~@fortawesome/fontawesome-free/scss/fontawesome";
 @import "~bootstrap/scss/bootstrap";
 @import "~loaders.css/loaders.min.css";
+@import "searchForm";
 //@import "~hover/scss/hover.scss";
 
 
@@ -200,7 +201,10 @@ padding: 14px 14px 0;
 overflow:hidden;
   width: 267px;
 background-color:rgba(255,255,255,.8);
+  -webkit-animation-duration: 0.3s; /* Safari 4.0 - 8.0 */
+  animation-duration: 0.3s !important;
 }
+
 #login-dp .help-block{
 font-size:12px
 }

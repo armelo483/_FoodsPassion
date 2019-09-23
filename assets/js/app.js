@@ -12,6 +12,10 @@ require ('loaders.css/loaders.css');
 
 $(document).ready(function() {
 
+    $(".fa-search").click(function() {
+        $(".search-box").toggle();
+        $("input[type='text']").focus();
+    });
     /*$( '#login-dp' ).on( 'showRemoved', function() {
         var $element = $( this );
         var timer = setInterval( function() {
@@ -32,13 +36,13 @@ $(document).ready(function() {
     setTimeout(notificationBAE, 40000);
 
     if(typeof(notificationBienvenue) != "undefined" && notificationBienvenue !== null){
-        setTimeout(notificationBienvenue, 42000);
+        setTimeout(notificationBienvenue, 41000);
     }
 
-    $('#login-dp').on('hide.bs.dropdown', function(){
+    /*$('#login-dp').on('hide.bs.dropdown', function(){
         //$(this).find('.dropdown-menu.animated').first().addClass('fadeOutUp').removeClass('fadeInDown');
         alert('test');
-    });
+    });*/
 
     //$('.main').show();
     /**

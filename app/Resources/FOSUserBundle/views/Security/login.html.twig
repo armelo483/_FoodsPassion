@@ -7,11 +7,11 @@
 <!--<ul class="nav navbar-nav navbar-right ml-auto">
     <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>-->
-<ul id="login-dp" class="animated fadeInDown" style="width:341px;margin: auto;margin-top: 85px;background: white;-webkit-box-shadow: 9px 4px 70px 6px rgba(0,0,0,0.75);
+<ul id="login-dp" class="animated {% if error  %}shake{% else %} fadeInDown{% endif %}" style="width:341px;margin: auto;margin-top: 85px;background: white;-webkit-box-shadow: 9px 4px 70px 6px rgba(0,0,0,0.75);
 -moz-box-shadow: 9px 4px 70px 6px rgba(0,0,0,0.75);
 box-shadow: 9px 4px 70px 6px rgba(0,0,0,0.75);">
    {% if error  %}
-        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        <span style="color:red;">{{ error.messageKey|trim('.')|trans({}, 'FOSUserBundle') }}</span>
     {% endif %}
 
     <li>
