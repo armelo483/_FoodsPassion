@@ -1,0 +1,47 @@
+panier_ecommerce_homepage:
+    path:     /panier
+    defaults: { _controller: PanierEcommerceBundle:Panier:index }
+    methods:    POST
+
+panier_add:
+  path:     /ajouter
+  defaults: { _controller: PanierEcommerceBundle:Panier:ajouter }
+  condition: "request.isXmlHttpRequest()"
+  methods:    GET
+
+panier_remove:
+  path:     /remove
+  defaults: { _controller: PanierEcommerceBundle:Panier:remove }
+  condition: "request.isXmlHttpRequest()"
+  methods:    GET
+
+panier_identite:
+  path:     /identite
+  defaults: { _controller: PanierEcommerceBundle:Panier:identite }
+  #condition: "request.isXmlHttpRequest()"
+  methods:    POST
+
+panier_submitidentite:
+  path:     /submitIdentite
+  defaults: { _controller: PanierEcommerceBundle:Panier:submitIdentite }
+  #condition: "request.isXmlHttpRequest()"
+  methods:    POST
+
+panier_paiement:
+  path:     /paiement
+  defaults: { _controller: PanierEcommerceBundle:Panier:paiement }
+  #condition: "request.isXmlHttpRequest()"
+  methods:    POST
+
+
+panier_checkout:
+  path:     /checkout
+  defaults: { _controller: PanierEcommerceBundle:Panier:checkout }
+  methods:    POST
+
+panier_confirmationPaiement:
+  path:     /confirmationPaiement
+  defaults: { _controller: PanierEcommerceBundle:Panier:confirmationPaiement }
+  methods:    POST
+
+
