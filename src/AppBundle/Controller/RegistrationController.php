@@ -5,14 +5,30 @@ namespace AppBundle\Controller;
 
 use FOS\UserBundle\Event\FilterUserResponseEvent;
 use FOS\UserBundle\Event\FormEvent;
+use FOS\UserBundle\Form\Factory\FactoryInterface;
 use FOS\UserBundle\FOSUserEvents;
+use FOS\UserBundle\Model\UserManagerInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use FOS\UserBundle\Controller\RegistrationController as BaseController;
 use FOS\UserBundle\Event\GetResponseUserEvent;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 
 class RegistrationController extends BaseController
 {
+
+
+    public function __construct(EventDispatcherInterface $eventDispatcher, FactoryInterface $formFactory, UserManagerInterface $userManager, TokenStorageInterface $tokenStorage)
+    {
+        parent::__construct($eventDispatcher,$formFactory,$userManager,$tokenStorage);
+
+    }
+
     public function registerAction(Request $request)
     {
         /** @var $formFactory FactoryInterface */
@@ -43,6 +59,16 @@ class RegistrationController extends BaseController
                 $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
 
                 $userManager->updateUser($user);
+
+                /**
+                 *
+                 * @todo Lancer l'evenement security.interactive_login pr que le loginListener ecoute et lance l'animation de bienvenue
+                 *
+                 */
+                $token = new UsernamePasswordToken($user, $user->getPassword(), "public", $user->getRoles());
+                $this->get("security.token_storage")->setToken($token);
+                $event = new InteractiveLoginEvent($request, $token);
+                $this->get("event_dispatcher")->dispatch("security.interactive_login", $event);
 
                 /*****************************************************
                  * Add new functionality (e.g. log the registration) *

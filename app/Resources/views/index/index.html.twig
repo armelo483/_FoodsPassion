@@ -57,7 +57,7 @@
                                </ul>
 
                     </li>
-                    {% if app.user %}
+                    {% if app.user and launchAnimationOnce ==1 %}
                     <li style="color:white;">Bonjour {{ app.user.username|capitalize }} !  </li>
                     <li style="width:30px;"> </li>
                     <li><b><a href="{{ path('fos_user_security_logout') }}"> Déconnexion</a></b></li>
@@ -80,7 +80,7 @@
                                         Login via
                                         <div class="social-buttons">
                                             <a href="#" class="btn btn-fb"><i class="fas fas-facebook"></i> Facebook</a>
-                                           <!-- <a href="{#{{ path('hwi_oauth_service_redirect', {'service': 'facebook' }) }}#}" class="btn btn-fb"><i class="fas fas-facebook"></i> Facebook</a>
+                                           <a href="{#{{ path('hwi_oauth_service_redirect', {'service': 'facebook' }) }}#}" class="btn btn-fb"><i class="fas fas-facebook"></i> Facebook</a>
                                             <a href="#" class="btn btn-tw"><i class="fas fas-google"></i> Google</a>
                                         </div>
                                         or
@@ -345,7 +345,7 @@
 </div>
 <!-- /.container -->
 </footer>
-    {% if app.user %}
+    {% if onceAnimation ==1 %}
 <div class="splashscreen animated slideOutLeft">
     <div class="splashscreen-div animated bounceOutRight">Bienvenue {{ app.user.username|capitalize }}</div>
     <div class="splashscreen-div animated flipOutX" style="position: relative;top: 54px;">

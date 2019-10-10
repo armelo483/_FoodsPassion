@@ -33,7 +33,7 @@ $(document).ready(function() {
 
 
 
-    setTimeout(notificationBAE, 40000);
+    setTimeout(notificationBAE, 4000);
 
     if(typeof(notificationBienvenue) != "undefined" && notificationBienvenue !== null){
         setTimeout(notificationBienvenue, 41000);
@@ -59,9 +59,10 @@ $(document).ready(function() {
     _bindClickCommandButton();
     __onChangeInput();
 
-    $("button[type='submit']").click(function(e) {
+    $("form").submit(function(){
         $('.main').show();
     });
+
     $(".list-group-item").click(function(e) {
         if($(this).hasClass('active')){
             $(this).removeClass('active');
@@ -189,6 +190,22 @@ function removeItemPanier(metId){
             console.log(data);
         });
 }
+
+
+function animateCSS(element, animationName, callback) {
+    const node = document.querySelector(element)
+    node.classList.add('animated', animationName)
+
+    function handleAnimationEnd() {
+        node.classList.remove('animated', animationName)
+        node.removeEventListener('animationend', handleAnimationEnd)
+
+        if (typeof callback === 'function') callback()
+    }
+
+    node.addEventListener('animationend', handleAnimationEnd)
+}
+
 function addItemPanier(metId){
 
     //$clickedButton.parent().css('opacity', '0.3');

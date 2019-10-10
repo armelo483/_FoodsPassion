@@ -1,10 +1,30 @@
-{% extends "@FOSUser/layout.html.twig" %}
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" rel="stylesheet">
 
-{% trans_default_domain 'FOSUserBundle' %}
+{% endblock %}
+{% block upperbody %}
+<body style="background: url({{ asset('build/products/BA.jpg' ) }});background-repeat: no-repeat;"> {% endblock %}
+{% block body %}
+    <div class="bg-secondary  animated testLazyloading" id="mainId" style="width:500px;margin:auto; color: white;margin-top:100px; box-shadow: 12px 12px 12px 12px #aaa;">
+        <div class="card-header">
+            <i class="far fa-id-card fa-lg fa-spin"></i>
+            <b>Utilisateur activé !</b>
+        </div>
 
-{% block fos_user_content %}
-    <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
-    {% if targetUrl %}
-    <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
-    {% endif %}
-{% endblock fos_user_content %}
+        <div style="padding-left:25px;padding-right:25px;padding-top:3px;height:60px;">
+            <p>Bravo, votre compte est maintenant activé ! L'équipe Black Angel's vous souhaite la bienvenue parmi nous :) !</p>
+            <p></p>
+        </div>
+
+        <div class="card-footer d-flex flex-row-reverse" style="height:40%">
+            <form action="{{ path('homepage') }}">
+                <button type="submit" class="btn btn-dark" style="margin-right:4px;">Retour à l'accueil
+                    <i class="fas fa-home"></i>
+                </button>
+            </form>
+
+        </div>
+    </div>
+{% endblock %}

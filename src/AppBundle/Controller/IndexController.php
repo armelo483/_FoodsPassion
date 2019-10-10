@@ -27,9 +27,24 @@ class IndexController extends Controller
      * @Route("/", name="homepage")
      */
     public function indexAction(Request $request)
-    { //dump($request->getSession());die;
+    {
         $session = $request->getSession();
-        $onceStartAnimation = 0;
+        $launchAnimationOnce = '';
+        $onceAnimation = '';
+        $redirectPath = $request->request->get('_target_path');
+        //dump($request);die;
+        $securityContext = $this->container->get('security.authorization_checker');
+        if ($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            $launchAnimationOnce = 1;
+        }
+
+        if (!empty($session->get('onceAnimation'))) {
+
+            $onceAnimation = (int)$session->get('onceAnimation');
+            $session->set('onceAnimation', null);
+        }
+
+
         $mets = $this->getDoctrine()
             ->getRepository(Mets::class)
             ->findAll();
@@ -38,6 +53,8 @@ class IndexController extends Controller
         return $this->render('index/index.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
             'mets' => $mets,
+            'launchAnimationOnce' => $launchAnimationOnce,
+            'onceAnimation' => $onceAnimation,
         ]);
     }
 

@@ -1,3 +1,5 @@
+{#
+
 {% trans_default_domain 'FOSUserBundle' %}
 
 {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
@@ -6,3 +8,89 @@
         <input type="submit" value="{{ 'registration.submit'|trans }}" />
     </div>
 {{ form_end(form) }}
+
+#}
+
+
+{% extends "FOSUserBundle::layout.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+{% block fos_user_content %}
+
+    {% block upperbody %}
+        <body style="background: grey !important;">    <!-- loader -->
+    {% endblock %}
+
+<div class="bg-secondary mains {% if form.vars.errors|length %}animated flipInY{% else %}animated slideInDown{% endif %}" id="mainId" style="width:500px;margin:auto; color: white;margin-top:20px; box-shadow: 12px 12px 12px 12px #aaa;">
+    <div class="card-header">
+        <i class="far fa-id-card fa-lg fa-spin"></i>
+        <b>Formulaire d'inscription à Black Angel's </b>
+    </div>
+<div class="form-error" style="margin-left: 0px;">
+    {{ form_errors(form) }}
+</div>
+    {#{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+
+   {{ form_row(form.username) }}
+   {{ form_row(form.plainPassword.first) }}
+   {{ form_row(form.plainPassword.second) }}
+   {{ form_row(form.email) }}
+   #}
+       {{ form_start(form, {"attr": {'novalidate': 'novalidate',"id": "myform"}}) }}
+        <div style="padding-left:25px;padding-right:25px;padding-top:20px;">
+            <div class="form-group">
+                {{ form_label(form.username) }}
+                {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
+                <div class="form-error">
+                    {{ form_errors(form.username) }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.name) }}
+                {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+                <div class="form-error">
+                    {{ form_errors(form.name) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(form.plainPassword.first) }}
+                {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
+                <div class="form-error">
+                    {{ form_errors(form.plainPassword.first) }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.plainPassword.second) }}
+                {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
+                <div class="form-error">
+                    {{ form_errors(form.plainPassword.second) }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(form.email) }}
+                {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+                <div class="form-error">
+                    {{ form_errors(form.email) }}
+                </div>
+            </div>
+
+        </div>
+        <div class="card-footer d-flex flex-row-reverse">
+
+            <button type="submit" class="btn btn-dark ">Je m'inscris !</button>
+            {{ form_row(form._token) }}
+            {{ form_end(form) }}
+           <form action="{{ path('homepage') }}">
+                <button type="submit" class="btn btn-dark" style="margin-right:4px;">Retour à l'accueil
+                    <i class="fas fa-home"></i>
+                </button>
+            </form>
+
+        </div>
+
+
+</div>
+
+
+{% endblock fos_user_content %}

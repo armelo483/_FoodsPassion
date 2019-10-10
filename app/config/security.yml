@@ -28,7 +28,6 @@ security:
                 provider: fos_userbundle
                 check_path: /login_check
                 csrf_token_generator: security.csrf.token_manager
-
            # oauth:
             #    resource_owners:
              #       facebook:           "/connect/check-facebook"
@@ -36,9 +35,10 @@ security:
                     #my_custom_provider: "/login/check-custom"
                     #my_github:          "/login/check-github"
                 login_path:        /login #/connect
+                use_referer:       true
                 use_forward:       false
                 failure_path:      /login #/connect
-                always_use_default_target_path: false
+                always_use_default_target_path: true
                 default_target_path: /
 
 

@@ -26,6 +26,7 @@ box-shadow: 9px 4px 70px 6px rgba(0,0,0,0.75);">
                 or
                 <form class="form" role="form" method="post" action="{{ path("fos_user_security_check")}}" accept-charset="UTF-8" id="login-nav">
                     <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                    <input type="hidden" name="_target_path" value="{{ app.request.headers.get('referer') }}" />
                     <div class="form-group">
                         <label class="sr-only" for="exampleInputEmail2">Identifiant</label>
                         <input type="text" class="form-control" id="exampleInputEmail2" placeholder="Email address" name="_username" required>
@@ -46,7 +47,7 @@ box-shadow: 9px 4px 70px 6px rgba(0,0,0,0.75);">
                 </form>
             </div>
             <div class="bottom text-center">
-                Nouveau ? <a href="#"><b>Rejoignez nous</b></a>
+                Nouveau ? <a href="{{ path('fos_user_registration_register') }}"><b>Rejoignez nous</b></a>
             </div>
         </div>
     </li>

@@ -453,7 +453,6 @@ COnfirmation paiement
   background: grey;
   //height:160px;
   box-shadow: 2px 2px 0px #aaa;
-  opacity:0;
   position: relative;
   left:0px;
 
@@ -506,7 +505,37 @@ a.list-group-item.active{
 }
 //Barre de recherche
 @import url(https://fonts.googleapis.com/css?family=Lato:100,300,400,700);
-@import url(https://raw.github.com/FortAwesome/Font-Awesome/master/docs/assets/css/font-awesome.min.css);
+@import url(https://use.fontawesome.com/releases/v5.7.2/css/all.css);
+
+
+.mains {
+  animation-duration: 1s;
+  //animation-delay: 1s;
+  //animation-iteration-count: infinite;
+}
+.form-error ul{
+  list-style: none;
+}
+.form-error {
+  color: #e4ff00;
+  font-weight: bolder;
+  margin-left: -39px;
+}
+.main-speed {
+  animation-duration: 0.5s;
+  //animation-delay: 1s;
+  //animation-iteration-count: infinite;
+}
+
+.has-error label.error {
+  color: red;
+  font-weight: bolder;
+}
+
+
+
+
+
 
 
 #wrap {
