@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 
+
 {% block body %}
 
 
@@ -218,6 +219,7 @@
         {% set panierArray = app.session.get('panier') %}
         <div class="col-lg-4 col-md-6 mb-4  animated bounceInLeft delay-10s" style="margin-bottom: 60px !important;">
             <div class="card h-100 hvr-bounce-in" >
+                <span class="article">En stock !</span>
                 <button class="commander {% if met.id in panierArray|keys %}deja-clique{% endif %}" id="Button{{ met.id}}">{% if met.id not in panierArray|keys %}<span>Ajouter au panier</span>{% else %}<i class="fa fa-times fa-w-11 fa-spin fa-lg"></i> Retirez l'article!{% endif %}</i></button>
                 <input name="{{'met'~met.id}}" type="hidden" value="{{ met.id}}" data-qte="0" />
                 <input type="hidden"  name="{{'dejaClique'~met.id}}" id="{{'dejaClique'~met.id}}" value="{% if met.id not in panierArray|keys %}0{% else %}1{% endif %}"/>

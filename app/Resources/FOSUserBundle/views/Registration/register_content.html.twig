@@ -14,13 +14,13 @@
 
 {% extends "FOSUserBundle::layout.html.twig" %}
 {% trans_default_domain 'FOSUserBundle' %}
+
+
 {% block fos_user_content %}
 
-    {% block upperbody %}
-        <body style="background: grey !important;">    <!-- loader -->
-    {% endblock %}
 
-<div class="bg-secondary mains {% if form.vars.errors|length %}animated flipInY{% else %}animated slideInDown{% endif %}" id="mainId" style="width:500px;margin:auto; color: white;margin-top:20px; box-shadow: 12px 12px 12px 12px #aaa;">
+{#<div class="bg-secondary mains {% if form.vars.errors|length %}animated flipInY{% else %}animated slideInDown{% endif %}" id="mainId" style="width:500px;margin:auto; color: white;margin-top:20px; box-shadow: 12px 12px 12px 12px #aaa;">#}
+<div class="bg-secondary mains animated flipInY" id="mainId" style="width:500px;margin:auto; color: white;margin-top:20px; box-shadow: 12px 12px 12px 12px #aaa;">
     <div class="card-header">
         <i class="far fa-id-card fa-lg fa-spin"></i>
         <b>Formulaire d'inscription à Black Angel's </b>

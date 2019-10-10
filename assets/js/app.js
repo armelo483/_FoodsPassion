@@ -12,6 +12,7 @@ require ('loaders.css/loaders.css');
 
 $(document).ready(function() {
 
+    sessionStorage.setItem('BAEAnim', '1');
     $(".fa-search").click(function() {
         $(".search-box").toggle();
         $("input[type='text']").focus();

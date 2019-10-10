@@ -156,6 +156,7 @@ object-fit: contain;
 
 }
 
+
 .card.h-100:hover .commander{
 display: inline-block;
 }
@@ -506,6 +507,19 @@ a.list-group-item.active{
 //Barre de recherche
 @import url(https://fonts.googleapis.com/css?family=Lato:100,300,400,700);
 @import url(https://use.fontawesome.com/releases/v5.7.2/css/all.css);
+
+.article {
+  border: 1px solid green;
+  font-weight: bolder;
+  background: green;
+  /* margin-top: 62px; */
+  position: relative;
+  top: 4px;
+  left: 3px;
+  padding-left: 5px;
+  padding-right: 2px;
+  color: white;
+}
 
 
 .mains {
