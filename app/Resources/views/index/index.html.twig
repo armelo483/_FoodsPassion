@@ -124,7 +124,6 @@
         </div>
     </nav>
 
-
     <!-- Alert message -->
 
 
@@ -145,13 +144,13 @@
 
      <div class="row">
 
-         <div class="col-lg-3">
+         <div  style="position:fixed;z-index: 3000;">
 {#{% include 'index/_snow.html.twig' %}#}
 <h1 class="my-4 word">
     <span>Black</span>
     <span>Angel's</span>
 </h1>
-<span >Liste des filtres d'affichage</span><br>
+<span style="color: darkkhaki; font-weight:bolder;font-size: 15px;">Liste des filtres d'affichage</span><br>
 <div class="list-group">
     <a href="#" class="list-group-item active" >Tout</a>
     <a href="#" class="list-group-item">Tee-Shirt</a>
@@ -163,7 +162,7 @@
 </div>
 <!-- /.col-lg-3 -->
 
-<div class="col-lg-9">
+<div class="col-lg- offset-lg-3">
 
 <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
     <ol class="carousel-indicators">
@@ -217,7 +216,8 @@
 <div class="row">
     {% for met in mets %}
         {% set panierArray = app.session.get('panier') %}
-        <div class="col-lg-4 col-md-6 mb-4  animated bounceInLeft delay-10s" style="margin-bottom: 60px !important;">
+        <div class="col-lg-4 col-md-6 mb-4 " data-aos="flip-left" style="margin-bottom: 60px !important;">
+
             <div class="card h-100 hvr-bounce-in" >
                 <span class="article">En stock !</span>
                 <button class="commander {% if met.id in panierArray|keys %}deja-clique{% endif %}" id="Button{{ met.id}}">{% if met.id not in panierArray|keys %}<span>Ajouter au panier</span>{% else %}<i class="fa fa-times fa-w-11 fa-spin fa-lg"></i> Retirez l'article!{% endif %}</i></button>
@@ -232,6 +232,7 @@
                     <h5 >{{ met.prix~'€' }}</span></h5>
                     <p class="card-text">{{ met.description }}</p>
                 </div>
+
                 <div class="card-footer">
                     <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                 </div>
@@ -348,11 +349,14 @@
 <!-- /.container -->
 </footer>
     {% if onceAnimation ==1 %}
-<div class="splashscreen animated slideOutLeft">
-    <div class="splashscreen-div animated bounceOutRight">Bienvenue {{ app.user.username|capitalize }}</div>
-    <div class="splashscreen-div animated flipOutX" style="position: relative;top: 54px;">
-        <span >Chez </span>
-        <img  class="logo-bae rounded-circle" src="{{ asset('build/products/logoBAE.jpg' ) }}"  width="200" height="150"/>
+{#<div class="splashscreen animated slideOutLeft" style="background: url({{ asset('build/products/BA.jpg' ) }}); background-size: 120px 100px;color: black;font-weight: bolder">#}
+<div class="splashscreen animated slideOutLeft" style="background: #192018; color: white;font-weight: bolder">
+    <img  class="logo-bae rounded-circle" src="{{ asset('build/products/logoBAE.jpg' ) }}"  width="200" height="150"/>
+    <!--<div class="splashscreen-div animated bounceOutRight">Bonjour</div>-->
+ {#<div class="splashscreen-div animated flipOutX" style="position: relative;top: 54px;">#}
+ <div class="splashscreen-div animated flipOutX" style="position: relative;top: 17px;">
+        <span>Bonjour {{ app.user.username|capitalize }} ! <img  class="rounded-circle" src="{{ asset('build/products/hugging.png' ) }}"  width="50" height="52"/></span>
+        {#<img  class="logo-bae rounded-circle" src="{{ asset('build/products/logoBAE.jpg' ) }}"  width="200" height="150"/>#}
     </div>
 
 {% endif %}

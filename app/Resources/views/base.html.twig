@@ -5,6 +5,7 @@
         <title>{% block title %}Bienvenue à Black Angel's !{% endblock %}</title>
         {% block stylesheets %}{# 'app' must match the first argument to addEntry() in webpack.config.js #}
             <link rel="stylesheet" href="/build/app.css">
+            <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
             <link href="https://fonts.googleapis.com/css?family=Exo&display=swap" rel="stylesheet">
             <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
             <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet">
@@ -17,7 +18,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
     </head>
     {% block upperbody %}
-    <body style="background: url({{ asset('build/products/BA.jpg' ) }}); background-attachment: fixed">    <!-- loader -->{% endblock %}
+    {#<body style="background: url({{ asset('build/products/BA.jpg' ) }}); background-attachment: fixed;background-size: 72px 70px;">    <!-- loader -->{% endblock %}#}
+    <body style="background: white;">    <!-- loader -->{% endblock %}
     <div class="main" >
         <div class="loader">
             <div id="loading" class="loader-inner square-spin">
@@ -34,8 +36,9 @@
             <script src="/build/app.js"></script>
             <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/mouse0270-bootstrap-notify/3.1.5/bootstrap-notify.min.js"></script>
-
+            <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
             <script type="application/javascript">
+                AOS.init();
                 var notificationBAE = function(){
                     $.notify({
                         // options

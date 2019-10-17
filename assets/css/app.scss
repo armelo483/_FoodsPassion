@@ -53,17 +53,17 @@ z-index:-1;
 
 .logo-bae{
   animation-name: spin;
-  animation-duration: 4000ms;
+  animation-duration: 2000ms;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
 }
 
 @keyframes spin {
   from {
-    transform:rotateY(0deg);
+    transform:rotateX(0deg);
   }
   to {
-    transform:rotateY(360deg);
+    transform:rotateX(360deg);
   }
 }
 
@@ -76,7 +76,7 @@ z-index:-1;
   background: #192018;
   color: white;
   z-index: 7000;
-  animation-delay: 12s;
+  animation-delay: 14s;
   text-align:center;
   font-weight:300;
   font-size:32px;
@@ -112,7 +112,7 @@ z-index:-1;
 }
 .splashscreen div:last-of-type span {
   margin-left:-355px;
-  animation: slidein 21s forwards ;
+  animation: slidein 14s forwards;
 }
 
 
@@ -126,8 +126,8 @@ z-index:-1;
 @keyframes slidein {
   0% { margin-left:-600px; }
   20% { margin-left:-600px; }
-  55% { margin-left:-99px; }
-  100% { margin-left:-107px; }
+  75% { margin-left:-192px; }
+  100% { margin-left:-190px; }
 }
 
 @keyframes reveal {
@@ -156,6 +156,10 @@ object-fit: contain;
 
 }
 
+.card-footer {
+  width: 100%;
+  bottom: 0;
+}
 
 .card.h-100:hover .commander{
 display: inline-block;
@@ -508,6 +512,11 @@ a.list-group-item.active{
 @import url(https://fonts.googleapis.com/css?family=Lato:100,300,400,700);
 @import url(https://use.fontawesome.com/releases/v5.7.2/css/all.css);
 
+.card-body {
+  height: 200px;
+}
+
+
 .article {
   border: 1px solid green;
   font-weight: bolder;
@@ -519,6 +528,7 @@ a.list-group-item.active{
   padding-left: 5px;
   padding-right: 2px;
   color: white;
+  width: 95px;
 }
 
 
