@@ -12,7 +12,7 @@
             <link href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css" rel="stylesheet">
             <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-notify/0.2.0/css/bootstrap-notify.min.css" rel="stylesheet">
             <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
-                        <!-- Renders a link tag (if your module requires any CSS)
+            <!-- Renders a link tag (if your module requires any CSS)
                  <link rel="stylesheet" href="/build/app.css"> -->{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -42,7 +42,7 @@
                 var notificationBAE = function(){
                     $.notify({
                         // options
-                        icon: 'https://scontent.fdla3-1.fna.fbcdn.net/v/t1.0-9/34137526_863741183809955_2243235678961795072_n.jpg?_nc_cat=100&_nc_oc=AQnWxEnL9FyKRlFceNJMyFl8chfYwy1biNxGqFlVBpinFvaP3pAQ87FVqrwAmSm2H-o&_nc_ht=scontent.fdla3-1.fna&oh=cf1d8b734898cb0aa534952a8da911ab&oe=5DF4BF29',
+                        icon: '{{ asset("build/products/bae.jpg") }}',
                         title: 'Byron Morgan',
                         message: 'Momentum reduce child mortality effectiveness incubation empowerment connect.',
                         url: 'https://github.com/mouse0270/bootstrap-notify',
@@ -59,8 +59,8 @@
                             '      \n' +
                             '        <!-- Modal Header -->\n' +
                             '        <div class="modal-header" style="background: #000000;color: white;">\n' +
-                            '<img data-notify="icon" class="img-circle pull-left" width="52" height="52">' +
-                            '          <h4 class="modal-title" style="position: relative; top:10px;margin-left: 10px;">Prochain évènement</h4>\n' +
+                            '<img data-notify="icon" class="img-circle pull-left" width="80" height="70" >' +
+                            '          <h4 class="modal-title" style="position: relative; top:15px;margin-left: 10px;">Prochain évènement</h4>\n' +
                             '          <button type="button" class="close" data-dismiss="modal">&times;</button>\n' +
                             '        </div>\n' +
                             '        \n' +
@@ -87,7 +87,7 @@
                         offset: 40,
                         spacing: 10,
                         z_index: 1031,
-                        delay: 4000,
+                        delay: 199000,
                         timer: 100,
                         url_target: '_blank',
                         mouse_over: null,

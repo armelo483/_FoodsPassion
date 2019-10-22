@@ -34,6 +34,11 @@ panier_paiement:
   methods:    POST
 
 
+panier_checkout_om_momo:
+  path:     /checkout
+  defaults: { _controller: PanierEcommerceBundle:Panier:checkoutMomoOmo }
+  methods:    POST
+
 panier_checkout:
   path:     /checkout
   defaults: { _controller: PanierEcommerceBundle:Panier:checkout }

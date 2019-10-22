@@ -124,6 +124,10 @@
         </div>
     </nav>
 
+
+
+
+<marquee style="position: absolute; top: 56px;font-weight: bolder;"> Profitez de la promo exclusive de <b style="color: red;">-20%</b> sur tout le site !</marquee>
     <!-- Alert message -->
 
 
@@ -138,14 +142,21 @@
         <button  class="close">&times;</button>
         <center>{{ flashMessage }}</center>
     </div>
-{% endfor %}
+   {% endfor %}
+
+    {% for flashMessage in app.session.flashbag.get('error') %}
+        <div class="alert alert-danger"  id='redAlert'>
+            <button  class="close">&times;</button>
+            <center>{{ flashMessage }}</center>
+        </div>
+    {% endfor %}
  <!-- Page Content -->
  <div class="container container-home">
 
      <div class="row">
 
-         <div  style="position:fixed;z-index: 3000;">
-{#{% include 'index/_snow.html.twig' %}#}
+         <div  style="position:fixed;">
+             {# {% include 'index/_snow.html.twig' %} #}
 <h1 class="my-4 word">
     <span>Black</span>
     <span>Angel's</span>
@@ -191,28 +202,6 @@
     </a>
 </div>
 
-
-<!-- The modal -->
-<div class="modal fade" id="flipFlop" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title" id="modalLabel">Modal Title</h4>
-            </div>
-            <div class="modal-body">
-                Modal content...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
 <div class="row">
     {% for met in mets %}
         {% set panierArray = app.session.get('panier') %}
@@ -220,6 +209,8 @@
 
             <div class="card h-100 hvr-bounce-in" >
                 <span class="article">En stock !</span>
+                <button style="display: none;position: absolute;top: 189px;right: 61px;z-index: 7777;" type="button" class="btn btn-secondary description-rapide" data-toggle="modal" data-target="#flipFlop{{ met.id }}">Voir description</button>
+               <blink class="reduction blink_me">-20% </blink>
                 <button class="commander {% if met.id in panierArray|keys %}deja-clique{% endif %}" id="Button{{ met.id}}">{% if met.id not in panierArray|keys %}<span>Ajouter au panier</span>{% else %}<i class="fa fa-times fa-w-11 fa-spin fa-lg"></i> Retirez l'article!{% endif %}</i></button>
                 <input name="{{'met'~met.id}}" type="hidden" value="{{ met.id}}" data-qte="0" />
                 <input type="hidden"  name="{{'dejaClique'~met.id}}" id="{{'dejaClique'~met.id}}" value="{% if met.id not in panierArray|keys %}0{% else %}1{% endif %}"/>
@@ -229,7 +220,7 @@
                     <h4 class="card-title">
                         <a href="#">{{ met.libelle }}</a>
                     </h4>
-                    <h5 >{{ met.prix~'€' }}</span></h5>
+                    <h5 >{{ met.prix~'FCFA' }}</span></h5>
                     <p class="card-text">{{ met.description }}</p>
                 </div>
 
@@ -243,6 +234,31 @@
             </div>
 
         </div><br><br>
+
+        <!-- The modal -->
+        <div class="modal fade" id="flipFlop{{ met.id }}" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" style="z-index: 99999">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="background:#192018;color:white;">
+                        <img src="{{ asset('build/products/logoBAE.jpg')  }}" class="rounded-circle" width="80" />
+                        <h4 class="modal-title" id="modalLabel">{{ met.libelle }}</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin-left: 3px;">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <table>
+                            <tr><td rowspan="3" style="border:1px solid #dbdbdb;width:458px;height:458px;"><img class="card-img-top"  src="{{ asset('build/products/' ~ met.imageUrl ) }}" alt="" ></td><td style="padding-left: 56px;"><h2><u>Prix:</u></h2>{{ met.prix~'FCFA' }}<br><h2><u>Description:</u></h2>{{ met.description }}</td></tr>
+                            <tr><td style="padding-left: 56px;"></td></tr>
+                            <tr><td></td></tr>
+                        </table>
+                    </div>
+                    <div class="modal-footer" style="background: #192018;">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     {% endfor %}
 
 
@@ -338,6 +354,8 @@
 </div>
 <!-- /.row -->
 
+
+
 </div>
 <!-- /.container -->
 
@@ -360,8 +378,12 @@
     </div>
 
 {% endif %}
-
 </div>
+
+
+
+
+
 <!-- Bootstrap core JavaScript -->
 <!--<script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->

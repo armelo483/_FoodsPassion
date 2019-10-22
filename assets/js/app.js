@@ -1,5 +1,6 @@
 // loads the jquery package from node_modules
 import '../css/app.scss';
+
 //var $ = require('jquery');
 require('bootstrap');
 require ('loaders.css/loaders.css');
@@ -17,6 +18,9 @@ $(document).ready(function() {
         $(".search-box").toggle();
         $("input[type='text']").focus();
     });
+
+
+
     /*$( '#login-dp' ).on( 'showRemoved', function() {
         var $element = $( this );
         var timer = setInterval( function() {
@@ -80,6 +84,7 @@ $(document).ready(function() {
 
     $(".close").click(function(){
         $('.alert-success').addClass('alert-success_out');
+        $('.alert-danger').addClass('alert-success_out');
     });
 
 

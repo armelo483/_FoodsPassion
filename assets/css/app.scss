@@ -2,6 +2,7 @@
 @import "~bootstrap/scss/bootstrap";
 @import "~loaders.css/loaders.min.css";
 @import "searchForm";
+//@import "~@material/list/mdc-list";
 //@import "~hover/scss/hover.scss";
 
 
@@ -122,7 +123,9 @@ z-index:-1;
   80% {opacity:1;}
   100% {opacity:1;}
 }
-
+.text-muted {
+  color: #ece617 !important;
+}
 @keyframes slidein {
   0% { margin-left:-600px; }
   20% { margin-left:-600px; }
@@ -159,8 +162,12 @@ object-fit: contain;
 .card-footer {
   width: 100%;
   bottom: 0;
+  background: rgba(0, 0, 0, 0.47);
 }
 
+.card.h-100:hover .description-rapide{
+  display: inline-block !important;
+}
 .card.h-100:hover .commander{
 display: inline-block;
 }
@@ -389,7 +396,7 @@ background-color:#59b5fa;
 Alert Success
  */
 
-.alert-success {
+.alert-success, .alert-danger{
   opacity: 0;
   animation: fadeInDown 1.7s ease-in-out 0s forwards;
 }
@@ -434,7 +441,7 @@ Alert Success
 
 // Alert
 
-#greenAlert{
+#greenAlert,#redAlert{
   position: relative;
   top:57px;
 }
@@ -500,6 +507,17 @@ a.list-group-item {
   color: black;
 
 }
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+.blink_me {
+  animation: blinker 1s linear infinite;
+}
+
+
 a.list-group-item:hover{
   background: #343A40;
   color: white;
@@ -516,6 +534,19 @@ a.list-group-item.active{
   height: 200px;
 }
 
+.reduction {
+  border: 1px solid red;
+  font-weight: bolder;
+  background: red;
+  /* margin-top: 62px; */
+  position: relative;
+  top: 4px;
+  left: 117px;
+  padding-left: 5px;
+  padding-right: 2px;
+  color: white;
+  width: 45px;
+}
 
 .article {
   border: 1px solid green;

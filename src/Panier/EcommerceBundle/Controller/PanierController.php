@@ -6,6 +6,7 @@ namespace Panier\EcommerceBundle\Controller;
 use AppBundle\Entity\Mets;
 use AppBundle\Repository\MetsRepository;
 use Panier\EcommerceBundle\Entity\Commande;
+use Ramsey\Uuid\Uuid;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -140,6 +141,7 @@ class PanierController extends Controller
         $commande = new Commande();
         $qteCommandeArray = [];
         $prixCommandeArray = [];
+
         foreach($recapCommande as $key=>$val){
 
             $met = $metsRepository->find($key);
@@ -157,6 +159,7 @@ class PanierController extends Controller
             'prixCommandeArray'=>$prixCommandeArray, 'qteCommandeArray'=>$qteCommandeArray]);
 
     }
+
     public function menuAction()
     {
         $session = $this->getRequest()->getSession();
@@ -168,6 +171,60 @@ class PanierController extends Controller
         return $this->render('EcommerceBundle:Default:panier/modulesUsed/panier.html.twig', array('articles' => $articles));
     }
 
+    //Réaliser le paiement avec OM/MOMO checkout
+    public function checkoutMomoOmoAction(Request $request){
+
+        $appliId = $this->getParameter('bewallet_appli_id');
+        $appliSecret = $this->getParameter('bewallet_appli_secret');
+        $appliBearer = $this->getParameter('bewallet_appli_bearer');
+        $bewalletBaseUrl = $this->getParameter('bewallet_appli_base_url');
+
+        $credential = [
+            'application_id' => $appliId, // Your created application ID
+            'application_secret' => $appliSecret, // Your created application SECRET key
+        ];
+
+        $reference = Uuid::uuid4()->toString(); //generer aleatoirement
+        $prix = $request->request->get('totalAmounts')/100;
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => $bewalletBaseUrl . "/api/applications/token",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30000,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => json_encode($credential),
+            CURLOPT_HTTPHEADER => array(
+                // Set here requred headers
+                "accept: */*",
+                "accept-language: en-US,en;q=0.8",
+                "content-type: application/json",
+                "Authorization: Bearer $appliBearer"
+            ),
+        ));
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
+        if ($err) {
+            echo "cURL Error #:" . $err;
+            $this->addFlash('error',"Paiement non abouti  [$err]");
+            return $this->redirectToRoute('homepage');
+        }
+
+        $result = json_decode($response);
+        header("Location: $bewalletBaseUrl/transactions/checkout?token=$result->token&amount=$prix&reference=$reference");
+        return $this->redirect("$bewalletBaseUrl/transactions/checkout?token=$result->token&amount=$prix&reference=$reference");
+
+
+    }
 
     //Réaliser le paiement avec stripe checkout
     public function checkoutAction(Request $request){

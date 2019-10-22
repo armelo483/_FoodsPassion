@@ -24,7 +24,7 @@
                     <tr class="prix-qte">
                         <td>{{ met.libelle }}</td>
                         <td>{{ met.description }}</td>
-                        <td><span class="prix" >{{ prixCommandeArray[i]~'€' }}</span></td>
+                        <td><span class="prix" >{{ prixCommandeArray[i]~' FCFA' }}</span></td>
                         <td><img src="{{ asset('build/products/' ~ met.imageUrl ) }}" width="252" height="143"></td>
                         <td><span>{{ qteCommandeArray[i] }}</span></td>
                     </tr>
@@ -33,13 +33,13 @@
                 <tr>
                     <td><b>Quantité totale</b></td>
                     <td></td>
-                    <td><span id="prixTotal">{{ prixCommandeArray[i]~'€' }}</span></td>
+                    <td><span id="prixTotal">{{ prixCommandeArray[i]~' FCFA' }}</span></td>
                     <td></td>
                     <td><label id="qteTotale">{{ qteCommandeArray[i] }}</label></td>
                 </tr>
                 </tbody>
             </table>
-            <div>
+            <div style="display:inline-block;">
                 {% set totalAmount =  prixCommandeArray[i]*100 %}
                 <form action="{{path('panier_checkout')}}" method="POST">
                     <script
@@ -56,6 +56,12 @@
                 </form>
 
             </div>
+        <div style="display: inline-block;">
+            <form action="{{path('panier_checkout_om_momo')}}" method="POST">
+                <input name="totalAmounts" value="{{ totalAmount }}" type="hidden" />
+                <button type="submit" class="btn btn-info">Paiement OM/MOMO</button>
+            </form>
+        </div>
 
 
     </div>
