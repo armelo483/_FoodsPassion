@@ -36,9 +36,25 @@ $(document).ready(function() {
         $(this).addClass('lightSpeedOut');
     });*/
 
+    if(typeof(notificationBAE) != "undefined" && notificationBAE !== null){
+        setTimeout(notificationBAE, 15000);
+    }
 
 
-    setTimeout(notificationBAE, 4000);
+    var btn = $('#backToTop');
+
+    $(window).scroll(function() {
+        if ($(window).scrollTop() > 300) {
+            btn.addClass('show');
+        } else {
+            btn.removeClass('show');
+        }
+    });
+
+    btn.on('click', function(e) {
+        e.preventDefault();
+        $('html, body').animate({scrollTop:0}, '300');
+    });
 
     if(typeof(notificationBienvenue) != "undefined" && notificationBienvenue !== null){
         setTimeout(notificationBienvenue, 41000);

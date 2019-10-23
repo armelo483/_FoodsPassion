@@ -401,6 +401,50 @@ Alert Success
   animation: fadeInDown 1.7s ease-in-out 0s forwards;
 }
 
+#backToTop {
+  display: inline-block;
+  background-color: #FF9800;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  border-radius: 4px;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  transition: background-color .3s,
+  opacity .5s, visibility .5s;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1000;
+}
+
+#backToTop::after {
+  content: "\f077";
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 2em;
+  line-height: 50px;
+  color: #fff;
+}
+#backToTop:hover {
+  cursor: pointer;
+  background-color: #333;
+}
+#backToTop:active {
+  background-color: #555;
+}
+
+#backToTop.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+@media (min-width: 500px) {
+  #backToTop {
+    margin: 30px;
+  }
+}
 .alert-success_out {
   opacity: 0;
   animation: fadeOutUp 1.5s ease-in-out 0s;
@@ -496,6 +540,14 @@ COnfirmation paiement
   background: #192018;
   opacity: 0.27;
 }
+.card.h-100:hover .taille {
+  display: block !important;
+}
+.card.h-100:hover .blink_me, .card.h-100:hover .article  {
+  display: none !important;
+
+}
+
 .card.h-100:hover .overlay {
   display: block;
   cursor: pointer;

@@ -41,6 +41,7 @@ class IndexController extends Controller
         if (!empty($session->get('onceAnimation'))) {
 
             $onceAnimation = (int)$session->get('onceAnimation');
+            $this->addFlash('onceAnimation',$onceAnimation);
             $session->set('onceAnimation', null);
         }
 
@@ -48,6 +49,7 @@ class IndexController extends Controller
         $mets = $this->getDoctrine()
             ->getRepository(Mets::class)
             ->findAll();
+
 
         // replace this example code with whatever you need
         return $this->render('index/index.html.twig', [

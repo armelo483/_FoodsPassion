@@ -2,7 +2,7 @@
 
 
 {% block body %}
-
+    <a id="backToTop"></a>
 
    <!-- <div style="position:absolute;top:70px;color:white;">
 
@@ -62,15 +62,17 @@
                     <li style="color:white;">Bonjour {{ app.user.username|capitalize }} !  </li>
                     <li style="width:30px;"> </li>
                     <li><b><a href="{{ path('fos_user_security_logout') }}"> Déconnexion</a></b></li>
-                    <script type="application/javascript">
-                        var notificationBienvenue = function(){
-                        $.notify("Black Angel est ravi de vous revoir {{ app.user.username|capitalize }} :)", {
-                                animate: {
-                                    enter: 'animated lightSpeedIn',
-                                    exit: 'animated rollOut'
-                                }},
-                            );}
-                    </script>
+                        {% if onceAnimation ==1 %}
+                            <script type="application/javascript">
+                                var notificationBienvenue = function(){
+                                $.notify("Black Angel est ravi de vous revoir {{ app.user.username|capitalize }} :)", {
+                                        animate: {
+                                            enter: 'animated lightSpeedIn',
+                                            exit: 'animated rollOut'
+                                        }},
+                                    );}
+                            </script>
+                        {% endif %}
                     {% else %}
                     <li class="dropdown">
                         <a href="{{ path('fos_user_security_login') }}" ><b>Connexion</b> <span class="caret"></span></a>
@@ -217,11 +219,15 @@
                 <!--<a href="#"><img class="card-img-top" src="{{ vich_uploader_asset(met, 'imageFile') }}" alt=""></a>-->
                <a href="#"><img class="card-img-top"  src="{{ asset('build/products/' ~ met.imageUrl ) }}" width="252" height="143" alt="" >
                 <div class="card-body">
+
                     <h4 class="card-title">
                         <a href="#">{{ met.libelle }}</a>
                     </h4>
                     <h5 >{{ met.prix~'FCFA' }}</span></h5>
                     <p class="card-text">{{ met.description }}</p>
+                    <p class="taille" style="position: absolute;top:4px;display:none;"><span style="color:black;">Tailles  </span><span class="badge badge-success">XXL</span> <span class="badge badge-secondary"> <s style="font-weight: bolder;"  size="3">XL</s></span> <span class="badge badge-success">L</span> <span class="badge badge-secondary">M</span>
+                        <span class="badge badge-secondary">S</span> <span class="badge badge-secondary">XS</span>
+                    </p>
                 </div>
 
                 <div class="card-footer">
@@ -377,17 +383,16 @@
         {#<img  class="logo-bae rounded-circle" src="{{ asset('build/products/logoBAE.jpg' ) }}"  width="200" height="150"/>#}
     </div>
 
-{% endif %}
 </div>
-
-
+    {% endif %}
 
 
 
 <!-- Bootstrap core JavaScript -->
 <!--<script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
+
+
+
 {% endblock %}
-
-
 
