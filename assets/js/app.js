@@ -141,7 +141,7 @@ var $alreadyClicked = '';
 
 //var monPlatObject = {id: null, qte:0};
 function _bindClickCommandButton(){
-    nbArticlesSession = $('.badge.badge-danger').html();
+    nbArticlesSession = $('.badge.badge-panier').html();
     $( ".commander" ).click(function() {
         var $inputQte = $(this).next();
         var $overLay = $(this).parent().find('.overlay');
@@ -176,9 +176,9 @@ function __ajouterPanier(metId, $clickedButton, $alreadyClicked, $overLay){
         $alreadyClicked.val(1);
         $overLay.css('display', 'block');
         if(nbArticlesSession!=''){
-            $('.badge.badge-danger').html(++nbArticlesSession);
+            $('.badge.badge-panier').html(++nbArticlesSession);
         }else{
-            $('.badge.badge-danger').html(++nbArticles);
+            $('.badge.badge-panier').html(++nbArticles);
         }
         addItemPanier(metId);
 
@@ -190,9 +190,9 @@ function __ajouterPanier(metId, $clickedButton, $alreadyClicked, $overLay){
 
         if(nbArticlesSession!=''){
 
-            $('.badge.badge-danger').html(--nbArticlesSession);
+            $('.badge.badge-panier').html(--nbArticlesSession);
         }else{
-            $('.badge.badge-danger').html(--nbArticles);
+            $('.badge.badge-panier').html(--nbArticles);
         }
 
         $alreadyClicked.val(0);

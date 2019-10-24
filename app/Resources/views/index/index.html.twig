@@ -47,7 +47,7 @@
                     <li class="dropdown">
                         <a id="shoppingLink" href="#" class="fa-shopping-link dropdown-toggle"  {% if app.session and app.session.get('panier')|length>0 %} data-toggle="dropdown" {% endif %}>
                         <i class="fa fa-shopping-cart fa-2x" aria-hidden="true" style="color:white;margin-right:14px;"></i>
-                        <span style="position: relative;right: 25px;bottom: 16px;" class="badge badge-danger">{% if app.session and app.session.get('panier')|length>0 %}{{ app.session.get('panier')|length }}{% endif %}</span>
+                        <span style="position: relative;right: 25px;bottom: 16px;" class="badge badge-danger badge-panier">{% if app.session and app.session.get('panier')|length>0 %}{{ app.session.get('panier')|length }}{% endif %}</span>
                         </a>
 
                         <ul id="shoppingCart" class="dropdown-menu">
@@ -258,7 +258,7 @@
                     <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                 </div>
 
-                   <div class="overlay" {% if met.id in panierArray|keys %} style="display: block;" {% endif %}>
+                   <div class="overlay" {% if met.id in panierArray|keys %} style="display: block;" {% endif %} style="display:none;">
                        <img  src="{{ asset('build/products/logoBAE.jpg') }}" alt="">
                    </div>
             </div>

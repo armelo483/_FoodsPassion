@@ -689,7 +689,7 @@ COnfirmation paiement
   position: absolute;
   top: 0;
   left: 0;
-  display: none;
+  //display: none;
   width: 100%;
   height: 100%;
   //z-index: 8000;
@@ -705,7 +705,7 @@ COnfirmation paiement
 }
 
 .card.h-100:hover .overlay {
-  display: block;
+  display: block !important;
   cursor: pointer;
 }
 
