@@ -145,7 +145,12 @@ function _bindClickCommandButton(){
     $( ".commander" ).click(function() {
         var $inputQte = $(this).next();
         var $overLay = $(this).parent().find('.overlay');
-
+        /*var $taillesDispo = $(this).parent().find('.taille');
+        var $reduction = $(this).parent().find('.reduction');
+        var $article = $(this).parent().find('.article');
+        $taillesDispo.show();
+        $reduction.hide();
+        $article.hide();*/
         var idMet = $inputQte.val();
         $alreadyClicked = $(this).next().next();
         console.log($alreadyClicked);

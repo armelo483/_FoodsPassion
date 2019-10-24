@@ -125,10 +125,34 @@
             </div>
         </div>
     </nav>
+    <!-- menu gauche -->
+{% if app.user %}
+    <!-- Menu de gauche -->
+    <div id="navs" class="navs">
+        <div class="icons">
+            <ul>
+                <li><a title="Home" href="#"><i class="fa fa-user"></i><span class="badge badge-danger" style="position: absolute;top: 11px; right: 1px;font-size: 12px;">495</span></a></li>
+                <li><a href="About"><i class="fa fa-user-circle"></i></a></li>
+                <li><a href="#"><i class="fa fa-phone"></i></a></li>
+                <li><a href="#"><i class="fa fa-cog "></i></a></li>
 
+            </ul>
+        </div>
+        <div class="text">
+            <ul>
+                <li><a href="#" >Mes points </a></li>
+                <li><a href="#" >Mon compte</a>
+                </li>
+                <li><a href="#" >Nous contactez</a>
+                </li>
 
-
-
+                <li><a href="#" >Paramètre</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- menu gauche -->
+{% endif %}
 <marquee style="position: absolute; top: 56px;font-weight: bolder;"> Profitez de la promo exclusive de <b style="color: red;">-20%</b> sur tout le site !</marquee>
     <!-- Alert message -->
 
@@ -225,7 +249,7 @@
                     </h4>
                     <h5 >{{ met.prix~'FCFA' }}</span></h5>
                     <p class="card-text">{{ met.description }}</p>
-                    <p class="taille" style="position: absolute;top:4px;display:none;"><span style="color:#da8a13;;">Tailles:  </span><span class="badge badge-success">XXL</span> <span class="badge badge-secondary"> <s style="font-weight: bolder;"  size="3">XL</s></span> <span class="badge badge-success">L</span> <span class="badge badge-secondary">M</span>
+                    <p class="taille" style="position: absolute;top:4px;display:none;"><span style="color:#da8a13;font-weight: bolder;">Tailles:  </span><span class="badge badge-success">XXL</span> <span class="badge badge-secondary"> <s style="font-weight: bolder;"  size="3">XL</s></span> <span class="badge badge-success">L</span> <span class="badge badge-secondary">M</span>
                         <span class="badge badge-secondary">S</span> <span class="badge badge-secondary">XS</span>
                     </p>
                 </div>
@@ -253,11 +277,33 @@
                         </button>
                     </div>
                     <div class="modal-body">
+                        {#
+
                         <table>
-                            <tr><td rowspan="3" style="border:1px solid #dbdbdb;width:458px;height:458px;"><img class="card-img-top"  src="{{ asset('build/products/' ~ met.imageUrl ) }}" alt="" ></td><td style="padding-left: 56px;"><h2><u>Prix:</u></h2>{{ met.prix~'FCFA' }}<br><h2><u>Description:</u></h2>{{ met.description }}</td></tr>
+                            <tr style="border: 1px solid red;"><td rowspan="3" style="border:1px solid #dbdbdb;width:458px;height:458px;"><img class="card-img-top"  src="{{ asset('build/products/' ~ met.imageUrl ) }}" alt="" ></td>
+                                <td style="padding-left: 56px;"><h2><u>Prix:</u></h2>{{ met.prix~'FCFA' }}<br><h2><u>Description:</u></h2>{{ met.description }}</td></tr>
                             <tr><td style="padding-left: 56px;"></td></tr>
                             <tr><td></td></tr>
                         </table>
+
+                        #}
+                        <div style="display: inline-block; width:500px;height:500px;margin-right:14px;border:1px solid #dbdbdb;">
+                            <img class="card-img-top"  src="{{ asset('build/products/' ~ met.imageUrl ) }}" alt="" >
+                        </div>
+                        <div style="display: inline-block;position: absolute;height:500px;">
+                            <h2><u>Prix:</u></h2>{{ met.prix~'FCFA' }}<br>
+                            <h2 style="margin-top: 7px"><u>Description:</u></h2>
+                            <p >{{ met.description }}</p>
+                            <h2 style="margin-top: 7px"><u>Tailles disponibles:</u></h2>
+                            <div class="tailles-dispo">
+                                <span class="badge badge-success"><h5>XXL</h5></span>
+                                <span class="badge badge-secondary"> <h5><s style="font-weight: bolder;"  size="3">XL</s></h5></span>
+                                <span class="badge badge-success"><h5>L</h5></span>
+                                <span class="badge badge-secondary"><h5>M</h5></span>
+                                <span class="badge badge-secondary"><h5>S</h5></span>
+                                <span class="badge badge-secondary"><h5>XS</h5></span>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer" style="background: #192018;">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
