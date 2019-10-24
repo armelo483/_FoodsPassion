@@ -128,7 +128,7 @@
     <!-- menu gauche -->
 {% if app.user %}
     <!-- Menu de gauche -->
-    <div id="navs" class="navs">
+    <div id="navs" class="navs animated fadeInLeftBig" style="{% if onceAnimation ==1 %}animation-delay: 14s;{% endif %}animation-duration: 7s;transition-timing-function: ease-out;left:-40px;">
         <div class="icons">
             <ul>
                 <li><a title="Home" href="#"><i class="fa fa-user"></i><span class="badge badge-danger" style="position: absolute;top: 11px; right: 1px;font-size: 12px;">495</span></a></li>
