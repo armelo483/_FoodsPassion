@@ -233,7 +233,10 @@
         {% set panierArray = app.session.get('panier') %}
         <div class="col-lg-4 col-md-6 mb-4 " data-aos="flip-left" style="margin-bottom: 60px !important;">
 
-            <div class="card h-100 hvr-bounce-in" >
+            <div class="card h-100 hvr-bounce-in" style="overflow:hidden;" >
+                <p class="taille" style="position: absolute;top:4px;display:none;"><span style="color:#da8a13;font-weight: bolder;">Tailles:  </span><span class="badge badge-success">XXL</span> <span class="badge badge-secondary"> <s style="font-weight: bolder;"  size="3">XL</s></span> <span class="badge badge-success">L</span> <span class="badge badge-secondary">M</span>
+                    <span class="badge badge-secondary">S</span> <span class="badge badge-secondary">XS</span>
+                </p>
                 <span class="article">En stock !</span>
                 <button style="display: none;position: absolute;top: 189px;right: 61px;z-index: 7777;" type="button" class="btn btn-secondary description-rapide" data-toggle="modal" data-target="#flipFlop{{ met.id }}">Voir description</button>
                <blink class="reduction blink_me">-20% </blink>
@@ -241,18 +244,15 @@
                 <input name="{{'met'~met.id}}" type="hidden" value="{{ met.id}}" data-qte="0" />
                 <input type="hidden"  name="{{'dejaClique'~met.id}}" id="{{'dejaClique'~met.id}}" value="{% if met.id not in panierArray|keys %}0{% else %}1{% endif %}"/>
                 <!--<a href="#"><img class="card-img-top" src="{{ vich_uploader_asset(met, 'imageFile') }}" alt=""></a>-->
-               <a href="#"><img class="card-img-top"  src="{{ asset('build/products/' ~ met.imageUrl ) }}" width="252" height="143" alt="" >
-                <div class="card-body">
+               <a href="#"><img class="card-img-top"  src="{{ asset('build/products/' ~ met.imageUrl ) }}" width="252" height="143" alt="" style="object-fit: contain;">
 
-                    <h4 class="card-title">
-                        <a href="#">{{ met.libelle }}</a>
-                    </h4>
-                    <h5 >{{ met.prix~'FCFA' }}</span></h5>
-                    <p class="card-text">{{ met.description }}</p>
-                    <p class="taille" style="position: absolute;top:4px;display:none;"><span style="color:#da8a13;font-weight: bolder;">Tailles:  </span><span class="badge badge-success">XXL</span> <span class="badge badge-secondary"> <s style="font-weight: bolder;"  size="3">XL</s></span> <span class="badge badge-success">L</span> <span class="badge badge-secondary">M</span>
-                        <span class="badge badge-secondary">S</span> <span class="badge badge-secondary">XS</span>
-                    </p>
-                </div>
+                   <div class="card-body animated slideInLeft" style="animation-delay: 1s;" >
+                     <h4 class="card-title">
+                         <a href="#">{{ met.libelle }}</a>
+                     </h4>
+                     <h5 >{{ met.prix~' FCFA' }}</span></h5>
+                     <p class="card-text">{{ met.description }}</p>
+                 </div>
 
                 <div class="card-footer">
                     <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
@@ -290,7 +290,7 @@
                         <div style="display: inline-block; width:500px;height:500px;margin-right:14px;border:1px solid #dbdbdb;">
                             <img class="card-img-top"  src="{{ asset('build/products/' ~ met.imageUrl ) }}" alt="" >
                         </div>
-                        <div style="display: inline-block;position: absolute;height:500px;">
+                        <div  style="display: inline-block;position: absolute;height:500px;">
                             <h2><u>Prix:</u></h2>{{ met.prix~'FCFA' }}<br>
                             <h2 style="margin-top: 7px"><u>Description:</u></h2>
                             <p >{{ met.description }}</p>

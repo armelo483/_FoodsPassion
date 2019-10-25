@@ -29,7 +29,7 @@
                 <td>{{ commande.libelle }}</td>
                 <td>{{ commande.description }}</td>
                 <td><span id="prix_{{ commande.id}}" data-prix="{{ commande.prix}}" class="prix" >{{ commande.prix~'€' }}</span></td><input type="hidden" name="prixUnitaire_{{ commande.id}}" value="{{ commande.prix}}"/>
-                <td><img src="{{ asset('build/products/' ~ commande.imageUrl ) }}" width="252" height="143"></td>
+                <td><img src="{{ asset('build/products/' ~ commande.imageUrl ) }}" width="252" height="143" style="object-fit: contain;"></td>
                 <td><input type="number" id="qte_{{ commande.id}}" min="0" max="{{ commande.stock }}" name="qteCommandee_{{ commande.id}}" placeholder="" value="1" style="width:40px;" class="qte-input"></td>
             </tr>
 

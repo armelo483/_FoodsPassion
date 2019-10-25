@@ -703,6 +703,24 @@ COnfirmation paiement
   display: none !important;
 
 }
+.article-desc{
+  position:relative;
+  animation-duration: 0.5s;
+  animation-delay: 2s;
+  opacity: 0;
+  animation-name: articleDesc;
+  border: 1px solid lavender;
+  animation-timing-function: ease-in;
+  -webkit-animation-name: articleDesc;
+  animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes articleDesc {
+  0%   { left:-151px;opacity: 0;}
+  25%  {left:-101px;opacity: 0;}
+  80%  {left:-1px;opacity:0.8;}
+  100% {left:0px;opacity:1;}
+}
 
 .card.h-100:hover .overlay {
   display: block !important;

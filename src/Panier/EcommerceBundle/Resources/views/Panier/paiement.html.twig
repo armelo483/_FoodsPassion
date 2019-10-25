@@ -25,7 +25,7 @@
                         <td>{{ met.libelle }}</td>
                         <td>{{ met.description }}</td>
                         <td><span class="prix" >{{ prixCommandeArray[i]~' FCFA' }}</span></td>
-                        <td><img src="{{ asset('build/products/' ~ met.imageUrl ) }}" width="252" height="143"></td>
+                        <td><img src="{{ asset('build/products/' ~ met.imageUrl ) }}" width="252" height="143" style="object-fit: contain;"></td>
                         <td><span>{{ qteCommandeArray[i] }}</span></td>
                     </tr>
                     {% set i = i +1 %}
