@@ -1,5 +1,6 @@
 <?php
 
+use Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
@@ -15,14 +16,17 @@ class AppKernel extends Kernel
             new Symfony\Bundle\MonologBundle\MonologBundle(),
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
-            new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             //new \HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
             //new Http\HttplugBundle\HttplugBundle(),
             new \Vich\UploaderBundle\VichUploaderBundle(),
             new \EasyCorp\Bundle\EasyAdminBundle\EasyAdminBundle(),
             new AppBundle\AppBundle(),
+            new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
+            new Nelmio\CorsBundle\NelmioCorsBundle(),
             //new EcommerceBundle\EcommerceBundle(),
+            new \ApiPlatform\Core\Bridge\Symfony\Bundle\ApiPlatformBundle(),
             new Panier\EcommerceBundle\PanierEcommerceBundle(),
             //new \Symfony\Bundle\MakerBundle\MakerBundle(),
         ];

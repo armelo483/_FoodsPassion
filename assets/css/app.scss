@@ -2,6 +2,7 @@
 @import "~bootstrap/scss/bootstrap";
 @import "~loaders.css/loaders.min.css";
 @import "searchForm";
+@import "_revue";
 //@import "~@material/list/mdc-list";
 //@import "~hover/scss/hover.scss";
 
@@ -170,6 +171,11 @@ object-fit: contain;
 }
 .card.h-100:hover .commander{
 display: inline-block;
+}
+
+.article-revue {
+  height: 250px;
+  margin-top: 106px;
 }
 
 //boutton commander
@@ -404,7 +410,7 @@ Alert Success
   animation: fadeInDown 1.7s ease-in-out 0s forwards;
 }
 
-#backToTop {
+.backToTop {
   display: inline-block;
   background-color: #FF9800;
   width: 50px;
@@ -421,7 +427,8 @@ Alert Success
   z-index: 1000;
 }
 
-#backToTop::after {
+
+.backToTop::after {
   content: "\f077";
   font-family: FontAwesome;
   font-weight: normal;
@@ -430,21 +437,21 @@ Alert Success
   line-height: 50px;
   color: #fff;
 }
-#backToTop:hover {
+.backToTop:hover {
   cursor: pointer;
   background-color: #333;
 }
-#backToTop:active {
+.backToTop:active {
   background-color: #555;
 }
 
-#backToTop.show {
+.backToTop.show {
   opacity: 1;
   visibility: visible;
 }
 
 @media (min-width: 500px) {
-  #backToTop {
+  .backToTop {
     margin: 30px;
   }
 }
@@ -705,15 +712,34 @@ COnfirmation paiement
 }
 .article-desc{
   position:relative;
+  border: 1px solid lavender;
+  @extend .animationSlow;
+  animation-timing-function: ease-in-out !important;
+}
+
+.recap-commande {
+  animation-duration: 1s;
+  opacity: 0;
+  position: absolute;
+  animation-name: recapAnim;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease;
+  @-webkit-keyframes recapAnim {
+    0%   { left:-160px;opacity: 0;}
+    90%   { left:200px;opacity: 0.8;}
+    100% {left:210px;opacity:1;}
+  }
+}
+.animationSlow {
   animation-duration: 0.5s;
   animation-delay: 2s;
   opacity: 0;
   animation-name: articleDesc;
-  border: 1px solid lavender;
   animation-timing-function: ease-in;
   -webkit-animation-name: articleDesc;
   animation-fill-mode: forwards;
 }
+
 
 @-webkit-keyframes articleDesc {
   0%   { left:-151px;opacity: 0;}

@@ -41,7 +41,8 @@ $(document).ready(function() {
     }
 
 
-    var btn = $('#backToTop');
+
+    var btn = $('.backToTop');
 
     $(window).scroll(function() {
         if ($(window).scrollTop() > 300) {
@@ -276,4 +277,12 @@ function __onChangeInput(){
         $('#prixTotal').html(prixTotal+'€');
         $('#qteTotale').html(QteTotal);
     });
+
+
 }
+
+$('.add-comment').click(function(){
+    $("html, body").animate({ scrollTop: $(document).height() }, 1800);
+    setTimeout(function(){ $('.new-comment').addClass('fadeInLeft slower'); }, 1000);
+
+});

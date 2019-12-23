@@ -9,10 +9,12 @@ use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\JoinTable;
+use ApiPlatform\Core\Annotation\ApiResource;
+
 
 /**
- * Mets
  *
+ * @ApiResource()
  * @ORM\HasLifecycleCallbacks
  * @ORM\Table(name="mets", uniqueConstraints={@ORM\UniqueConstraint(name="metscol_UNIQUE", columns={"metscol"})})
  * @ORM\Entity(repositoryClass="AppBundle\Repository\MetsRepository")
@@ -94,6 +96,7 @@ class Mets
 
     /**
      *
+     *
      * @ORM\ManyToMany(targetEntity="Panier\EcommerceBundle\Entity\Commande", cascade={"persist"},mappedBy="mets")
      * @ORM\JoinTable(name="commande_mets",
      *      joinColumns={@ORM\JoinColumn(name="met_id", referencedColumnName="id")},
@@ -103,6 +106,12 @@ class Mets
      */
 
     private $commandes;
+
+    /**
+     *  @ORM\OneToMany(targetEntity="Commentaires", mappedBy="mets")
+     */
+
+    private $commentaires;
 
     /**
      * @return mixed

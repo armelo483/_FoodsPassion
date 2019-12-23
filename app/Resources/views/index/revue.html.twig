@@ -1,0 +1,129 @@
+{% extends 'base.html.twig' %}
+{% block title %}Revue article(s) !{% endblock %}
+{% block upperbody %}
+    {#<body style="background: url({{ asset('build/products/BA.jpg' ) }}); background-attachment: fixed;background-size: 72px 70px;">    <!-- loader -->{% endblock %}#}
+<body style="background: #F0F0F0;">    <!-- loader -->{% endblock %}
+{% block body %}
+{% include 'index/_navBar.html.twig' %}
+ {%  set onceAnimation = 0 %}
+{% include 'index/_menuGauche.html.twig'  with {'onceAnimation': onceAnimation} %}
+    {% set averageNotation = 0 %}
+    {% set sommeNotation = 0 %}
+    {% for commentaire in commentaires %}
+        {% set sommeNotation = sommeNotation + commentaire.notation %}
+    {% endfor %}
+
+    <div class="container" style="background: whitesmoke;overflow: hidden;">
+        <div style="overflow: hidden;">
+
+            <div class="article-revue animated fadeInRight" style="display: flex;margin-bottom:63px;">
+                {% if (commentaires|length > 0) %}
+                    {% set averageNotation = sommeNotation/commentaires|length %}
+                    <div class="animated fadeInLeft" style="vertical-align: top;">
+                        <canvas id="myChart"></canvas>
+                        <div style="color: #ffce00;font-weight: bold;font-size: 45px;line-height: normal;padding-left: 39px;">{{ averageNotation|round(2, 'common') }}/5</div>
+                        <input id="averageNotation" type="hidden" value="{{ averageNotation|round(2, 'common') }}"/>
+                    </div>
+                {% endif %}
+                <div style="background: white;width:837px;height: 273px;display: flex;">
+                    <div style="background:url({{ asset('build/products/' ~ met.imageUrl ) }}); width:186px;height: 340px;background-size: contain;background-repeat: no-repeat;margin-right: 3px;" >
+                    </div>
+                    <div>
+                        <h3><u>{{ met.libelle }}</u></h3>
+                        <p>{{ met.description }}</p>
+                    </div>
+
+                </div>
+                <!-- Boutton ajout commentaires-->
+                <a class="backToTop"></a>
+                <a class="add-comment" style="padding-left: 23px;animation: slideshowleft 21s forwards;cursor: pointer;" href="#">
+                    <span style="cursor: pointer;">Je donne <br> mon avis</span> <span><i class="fa fa-plus fa-3" aria-hidden="true"></i></span>  </a>
+                <!-- -->
+            </div>
+        </div>
+
+        {% for commentaire in commentaires %}
+            <div style="opacity: 0;margin-left: 42px;" class="comment-user animated fadeInLeft" >
+                <i class="fa fa-user" style="color: #0c5460"></i> <span> {{ commentaire.auteur|capitalize }}</span>
+                {% set notation = commentaire.notation|round(2, 'common') %}
+                <p>
+                    <span class="fa fa-star {% if notation>=1 %}checked" {% endif %}"></span>
+                    <span class="fa fa-star {% if notation>=2 %}checked" {% endif %}"></span>
+                    <span class="fa fa-star {% if notation>=3 %}checked" {% endif %}"></span>
+                    <span class="fa fa-star {% if notation>=4 %}checked" {% endif %}"></span>
+                    <span class="fa fa-star {% if notation>=5%}checked" {% endif %}"></span>
+                    <span>{{ commentaire.titreCommentaires }}</span>
+                </p>
+                <p>
+                   {{ commentaire.commentaires }}
+                </p>
+            </div>
+
+        {% endfor %}
+
+        <div class="new-comment animated" style="margin-bottom: 7px;opacity: 0;">
+            <form action="{{ path('revue') }}" method="post">
+                <span><b>Titre: </b></span><input class="titre_comment" type="text" name="titre_comment"/><br>
+                <textarea class="titre_comment" style="margin-top: 7px;" placeholder="votre avis" rows="15" cols="33" name="comment">
+
+            </textarea><br>
+            <b>Ma notation</b><br><input type="number" name="notation" min="1" max="5">
+                <input type="hidden" name="idMet" value="{{ met.id }}"/>
+                <button type="submit">Validez</button>
+            </form>
+
+        </div>
+    </div>
+
+
+
+    <style>
+        .header-sticky {
+            opacity: 0;
+            background: #262626 !important;
+        }
+
+        .checked {
+            color: orange;
+        }
+    </style>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.min.js">
+    </script>
+    <script type="application/javascript">
+        var ctx = document.getElementById("myChart").getContext('2d');
+        var notation = document.getElementById('averageNotation').value;
+
+        var myChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ["Notation globale pour cet article"],
+                datasets: [{
+                    backgroundColor: [
+                        "orange"
+                    ],
+                    data: [notation,5]
+                }]
+            }
+        });
+        $(document).ready(function(){
+            $(window).scroll(function(){
+                var scrollTop = $(window).scrollTop();
+                if (scrollTop > 35) {
+                    $('.header-sticky').addClass('fadeInDown');
+                    $('.header-sticky').removeClass('fadeOutUp');
+                    $('.header-sticky').addClass('animated');
+                } else {
+                    $('.header-sticky').addClass('fadeOutUp');
+                    $('.header-sticky').removeClass('fadeInUp');
+
+                }
+            });
+        });
+    </script>
+{% endblock %}

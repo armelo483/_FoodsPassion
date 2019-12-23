@@ -5,11 +5,13 @@ namespace Panier\EcommerceBundle\Controller;
 
 use AppBundle\Entity\Mets;
 use AppBundle\Repository\MetsRepository;
+use FOS\RestBundle\Request\ParamFetcherInterface;
 use Panier\EcommerceBundle\Entity\Commande;
 use Ramsey\Uuid\Uuid;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Component\Validator\Constraints\Email as EmailConstraint;
@@ -17,6 +19,7 @@ use Symfony\Component\Validator\Constraints\Email as EmailConstraint;
 
 class PanierController extends Controller
 {
+
     public function indexAction(Request $request)
     {
         $panier = $request->getSession()->get('panier');

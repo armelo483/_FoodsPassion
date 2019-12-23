@@ -27,12 +27,18 @@ panier_submitidentite:
   #condition: "request.isXmlHttpRequest()"
   methods:    POST
 
+# config/routes.yaml
+app.swagger_ui:
+  path: /api/doc
+  methods: GET
+  defaults: { _controller: nelmio_api_doc.controller.swagger_ui }
+
+
 panier_paiement:
   path:     /paiement
   defaults: { _controller: PanierEcommerceBundle:Panier:paiement }
   #condition: "request.isXmlHttpRequest()"
   methods:    POST
-
 
 panier_checkout_om_momo:
   path:     /checkout

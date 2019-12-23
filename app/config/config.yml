@@ -31,6 +31,12 @@ vich_uploader:
             upload_destination: '%kernel.project_dir%/publics%app.path.product_images%'
             namer: vich_uploader.namer_uniqid
 
+sensio_framework_extra:
+    router:
+        annotations: false
+    request: { converters: true }
+    view: { annotations: true }
+
 #hwi_oauth:
  #   connect:
   #      confirmation: true
@@ -123,7 +129,8 @@ framework:
     form: ~
     csrf_protection: ~
     validation: { enable_annotations: true }
-    #serializer: { enable_annotations: true }
+    serializer: { enable_annotations: true }
+
     default_locale: '%locale%'
     trusted_hosts: ~
     session:
@@ -176,9 +183,7 @@ swiftmailer:
     password: '%mailer_password%'
     spool: { type: memory }
 
-sensio_framework_extra:
-   router:
-        annotations: false
+
 
 
 # app/config/config.yml
@@ -197,3 +202,13 @@ fos_user:
     from_email:
         address: "%mailer_user%"
         sender_name: "%mailer_user%"
+
+# config/packages/nelmio_api_doc.yaml
+nelmio_api_doc:
+    areas:
+        path_patterns: # an array of regexps
+            - ^/api(?!/doc$)
+        host_patterns:
+            - ^api\.
+
+
