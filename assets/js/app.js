@@ -86,11 +86,39 @@ $(document).ready(function() {
     });
 
     $(".list-group-item").click(function(e) {
-        if($(this).hasClass('active')){
+        var filteredItemsClass = $(this).attr('id');
+        console.log('filteredItemsClass');
+        console.log(filteredItemsClass);
+        $( this ).toggleClass( "active");
+        $( ".met > div" ).each(function() {
+            //$( this ).toggleClass( "animated lightSpeedOut" );
+           // $( ".met >."+filteredItemsClass).attr('data-os', 'flip-left');
+            $( this ).removeClass( "d-none" );
+        });
+        //$.each('.'+filteredItemsClass)
+        if(filteredItemsClass!='all') {
+
+            $( ".met > :not('."+filteredItemsClass+"')" ).each(function() {
+                //$( this ).toggleClass( "animated lightSpeedOut" );
+                $( this ).toggleClass( "d-none" );
+                console.log($( this ));
+            });
+            AOS.refresh();
+        }else{
+            AOS.init();
+        }
+
+
+        $( ".list-group > :not('#"+filteredItemsClass+"')" ).each(function() {
+            //$( this ).toggleClass( "animated lightSpeedOut" );
+            $( this ).toggleClass( "active", false );
+            console.log($( this ));
+        });
+        /*if($(this).hasClass('active')){
             $(this).removeClass('active');
         }else{
             $(this).addClass('active');
-        }
+        }*/
 
     });
     $("input[type=number]").click(function(e) {

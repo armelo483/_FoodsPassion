@@ -13,7 +13,6 @@ use ApiPlatform\Core\Annotation\ApiResource;
 
 
 /**
- *
  * @ApiResource()
  * @ORM\HasLifecycleCallbacks
  * @ORM\Table(name="mets", uniqueConstraints={@ORM\UniqueConstraint(name="metscol_UNIQUE", columns={"metscol"})})
@@ -105,7 +104,7 @@ class Mets
      * @var Collection
      */
 
-    private $commandes;
+   // private $commandes;
 
     /**
      *  @ORM\OneToMany(targetEntity="Commentaires", mappedBy="mets")
@@ -114,11 +113,60 @@ class Mets
     private $commentaires;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="categorie", type="string", length=45, nullable=true)
+     */
+    private $categorie;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sexe", type="string", length=5, nullable=true)
+     */
+    private $sexe;
+
+    /**
+     * @return string
+     */
+    public function getSexe()
+    {
+        return $this->sexe;
+    }
+
+    /**
+     * @param string $sexe
+     */
+    public function setSexe($sexe)
+    {
+        $this->sexe = $sexe;
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getCategorie()
+    {
+        return $this->categorie;
+    }
+
+    /**
+     * @param string $categorie
+     */
+    public function setCategorie($categorie)
+    {
+        $this->categorie = $categorie;
+    }
+
+    /**
      * @return mixed
      */
     public function getCommandes()
     {
-        return $this->commandes;
+        //return $this->commandes;
+        return;
     }
 
     /**
@@ -157,13 +205,7 @@ class Mets
         return $this->imageFile;
     }
 
-    /**
-     * @return int
-     */
-    public function getIdmets()
-    {
-        return $this->idmets;
-    }
+
 
     /**
      * @param int $idmets
@@ -369,7 +411,8 @@ class Mets
      */
     public function getQte()
     {
-        return $this->qte;
+        //return $this->qte;
+        return;
     }
 
     /**

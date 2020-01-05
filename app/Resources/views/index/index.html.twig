@@ -54,11 +54,11 @@
 </h1>
 <span style="color: darkkhaki; font-weight:bolder;font-size: 15px;">Liste des filtres d'affichage</span><br>
 <div class="list-group">
-    <a href="#" class="list-group-item active" >Tout</a>
-    <a href="#" class="list-group-item">Tee-Shirt</a>
-    <a href="#" class="list-group-item">Pull-Over</a>
-    <a href="#" class="list-group-item">Chapeau</a>
-    <a href="#" class="list-group-item">Autres</a>
+    <a href="javascript:void(0)" class="list-group-item active" id="all">Tout</a>
+    <a href="javascript:void(0)" class="list-group-item" id="teeshirt">Tee-Shirt</a>
+    <a href="javascript:void(0)" class="list-group-item" id="sweater">Sweater</a>
+    <a href="javascript:void(0)" class="list-group-item" id="chapeau">Chapeau</a>
+    <a href="javascript:void(0)" class="list-group-item" id="autres">Autres</a>
 </div>
 
 </div>
@@ -93,10 +93,10 @@
     </a>
 </div>
 
-<div class="row">
+<div class="row met">
     {% for met in mets %}
         {% set panierArray = app.session.get('panier') %}
-        <div class="col-lg-4 col-md-6 mb-4 " data-aos="flip-left" style="margin-bottom: 60px !important;">
+        <div class="col-lg-4 col-md-6 mb-4  {{ met.categorie }}" data-aos="flip-left" style="margin-bottom: 60px !important;">
 
             <div class="card h-100 hvr-bounce-in" style="overflow:hidden;" >
                 <p class="taille" style="position: absolute;top:4px;display:none;"><span style="color:#da8a13;font-weight: bolder;">Tailles:  </span><span class="badge badge-success">XXL</span> <span class="badge badge-secondary"> <s style="font-weight: bolder;"  size="3">XL</s></span> <span class="badge badge-success">L</span> <span class="badge badge-secondary">M</span>
@@ -134,7 +134,7 @@
         </div><br><br>
 
         <!-- The modal -->
-        <div class="modal fade" id="flipFlop{{ met.id }}" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" style="z-index: 99999">
+        <div class="modal fade {{ met.categorie }}" id="flipFlop{{ met.id }}" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" style="z-index: 99999">
             <div class="modal-dialog modal-xl" role="document">
                 <div class="modal-content">
                     <div class="modal-header" style="background:#192018;color:white;">

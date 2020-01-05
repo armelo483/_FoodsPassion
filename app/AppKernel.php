@@ -24,6 +24,7 @@ class AppKernel extends Kernel
             new \EasyCorp\Bundle\EasyAdminBundle\EasyAdminBundle(),
             new AppBundle\AppBundle(),
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
+            //new FOS\RestBundle\FOSRestBundle(),
             new Nelmio\CorsBundle\NelmioCorsBundle(),
             //new EcommerceBundle\EcommerceBundle(),
             new \ApiPlatform\Core\Bridge\Symfony\Bundle\ApiPlatformBundle(),
